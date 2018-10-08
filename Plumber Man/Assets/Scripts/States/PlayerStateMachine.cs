@@ -19,7 +19,10 @@ public class PlayerStateMachine : MonoBehaviour {
 
     public void Jump()
     {
-        return; 
+       if(Input.GetButtonDown("Jump"))
+        {
+            state = state.Jump(); 
+        }
     }
 
     public void Movement()

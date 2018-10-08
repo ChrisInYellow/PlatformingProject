@@ -2,29 +2,29 @@
 using UnityEngine;
 namespace States
 {
-
-public class MoveCharacterState : DefaultState
-{
+    public class AirborneState : DefaultState
+    {
         private Vector3 velocity; 
-        public MoveCharacterState(Vector3 InitialVelocity)
+        
+        public AirborneState(Vector3 initalVelocity)
         {
-            velocity = InitialVelocity; 
+            velocity = initalVelocity; 
         }
 
         public override ICharacterState Jump()
         {
-            return this; 
+            return this;
         }
 
         public override ICharacterState Update(Transform transform)
         {
             transform.position += velocity * Time.deltaTime;
+            velocity -= GravityManager.Gravity * Time.deltaTime;
 
-            if (Input.GetButtonUp("Horizontal"))
+            if (transform.position.y <= 0)
                 return new GroundedState(); 
 
             return this; 
         }
     }
-
 }
