@@ -15,7 +15,7 @@ namespace States
             return this; 
         }
 
-        public virtual ICharacterState Update(Transform transform)
+        public virtual ICharacterState Update(Transform transform, Rigidbody2D rb)
         {
             return this; 
         }

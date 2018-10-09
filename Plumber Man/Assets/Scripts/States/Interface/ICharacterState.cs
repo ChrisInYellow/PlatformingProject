@@ -8,6 +8,6 @@ namespace States
         ICharacterState Jump(float input);
         ICharacterState Move(float input);
 
-        ICharacterState Update(Transform transform); 
+        ICharacterState Update(Transform transform, Rigidbody2D rb); 
     }
 }
