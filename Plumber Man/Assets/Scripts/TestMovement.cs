@@ -12,7 +12,6 @@ public class TestMovement : MonoBehaviour
     public LayerMask whatIsGround;
     public bool grounded;
     public SpriteRenderer sprite;
-
     
 
     // Use this for initialization
@@ -66,6 +65,7 @@ public class TestMovement : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
             
             sprite.flipX = true;
+            
         }
         else
         {
