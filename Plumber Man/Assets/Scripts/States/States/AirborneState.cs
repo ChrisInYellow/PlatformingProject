@@ -11,7 +11,7 @@ namespace States
             velocity = initalVelocity; 
         }
 
-        public override ICharacterState Jump()
+        public override ICharacterState Jump(float input)
         {
             return this;
         }

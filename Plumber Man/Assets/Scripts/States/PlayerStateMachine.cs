@@ -4,6 +4,7 @@ using States;
 
 public class PlayerStateMachine : MonoBehaviour {
     public float movementSpeed;
+    public float jumpingSpeed; 
 
     private ICharacterState state = new GroundedState();
 
@@ -21,7 +22,7 @@ public class PlayerStateMachine : MonoBehaviour {
     {
        if(Input.GetButtonDown("Jump"))
         {
-            state = state.Jump(); 
+            state = state.Jump(jumpingSpeed); 
         }
     }
 

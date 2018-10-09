@@ -5,7 +5,7 @@ namespace States
 {
     public abstract class DefaultState : ICharacterState {
     
-        public virtual ICharacterState Jump()
+        public virtual ICharacterState Jump(float input)
         {
             return this; 
         }
