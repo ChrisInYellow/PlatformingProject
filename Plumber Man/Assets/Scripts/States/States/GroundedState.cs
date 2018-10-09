@@ -15,7 +15,7 @@ namespace States
                 (input * Input.GetAxisRaw("Horizontal"), 0, 0)); 
         }
 
-        public override ICharacterState Update(Transform transform)
+        public override ICharacterState Update(Transform transform, Rigidbody2D rb)
         {
             if(transform.position.y >= 2)
             {

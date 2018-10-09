@@ -7,9 +7,11 @@ public class PlayerStateMachine : MonoBehaviour {
     public float jumpingSpeed; 
 
     private ICharacterState state = new GroundedState();
+    private Rigidbody2D rb; 
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>(); 
     }
 
     public void Update()
@@ -33,6 +35,6 @@ public class PlayerStateMachine : MonoBehaviour {
             state = state.Move(movementSpeed); 
         }
 
-        state = state.Update(transform); 
+        state = state.Update(transform, rb); 
     }
 }

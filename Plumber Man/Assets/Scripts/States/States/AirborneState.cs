@@ -16,9 +16,9 @@ namespace States
             return this;
         }
 
-        public override ICharacterState Update(Transform transform)
+        public override ICharacterState Update(Transform transform, Rigidbody2D rb)
         {
-            transform.position += velocity * Time.deltaTime;
+            rb.velocity = new Vector2(rb.velocity.x, velocity.y);
             //velocity -= GravityManager.Gravity * Time.deltaTime;
 
             if (transform.position.y <= 0)

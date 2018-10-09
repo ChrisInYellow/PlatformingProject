@@ -16,9 +16,9 @@ public class MoveCharacterState : DefaultState
             return new AirborneState(new Vector3(0, input, 0));
         }
 
-        public override ICharacterState Update(Transform transform)
+        public override ICharacterState Update(Transform transform, Rigidbody2D rb)
         {
-            transform.position += velocity * Time.deltaTime;
+            rb.velocity = new Vector2(velocity.x, rb.velocity.y);
 
             if (Input.GetButtonUp("Horizontal"))
                 return new GroundedState(); 
