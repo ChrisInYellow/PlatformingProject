@@ -4,9 +4,9 @@ namespace States
 {
     public class GroundedState : DefaultState
     {
-        public override ICharacterState Jump()
+        public override ICharacterState Jump(float input)
         {
-            return new AirborneState(new Vector3(0, 2, 0)); 
+            return new AirborneState(new Vector3(0, input, 0)); 
         }
 
         public override ICharacterState Move(float input)

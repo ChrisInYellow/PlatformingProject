@@ -5,7 +5,7 @@ namespace States
 
     public interface ICharacterState
     {
-        ICharacterState Jump();
+        ICharacterState Jump(float input);
         ICharacterState Move(float input);
 
         ICharacterState Update(Transform transform); 
