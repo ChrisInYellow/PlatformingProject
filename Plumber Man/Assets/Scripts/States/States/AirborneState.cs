@@ -19,7 +19,7 @@ namespace States
         public override ICharacterState Update(Transform transform)
         {
             transform.position += velocity * Time.deltaTime;
-            velocity -= GravityManager.Gravity * Time.deltaTime;
+            //velocity -= GravityManager.Gravity * Time.deltaTime;
 
             if (transform.position.y <= 0)
                 return new GroundedState(); 
