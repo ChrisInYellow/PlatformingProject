@@ -9,20 +9,20 @@ public class GravityGun : MonoBehaviour
     public SpriteRenderer sprite;
     public GameObject PullOBJ;
     public float ForceSpeed;
-    public Vector3 targetScale = new Vector3(0.1f, 0.1f, 0.1f);
+    public Vector3 targetScale = new Vector3(0.2f, 0.2f, 0.2f);
     public bool inTrigger;
-
-    public Transform startMarker;
-    public Transform endMarker;
+    
+    public GameObject startMarker;
+    public GameObject endMarker;
 
     // Movement speed in units/sec.
     public float speed = 1.0F;
 
     // Time when the movement started.
-    private float startTime;
+    public float startTime;
 
     // Total distance between the markers.
-    private float journeyLength;
+    public float journeyLength;
 
     
 
@@ -30,16 +30,18 @@ public class GravityGun : MonoBehaviour
     
     void Start()
     {
-        startTime = Time.time;
+        
 
         // Calculate the journey length.
-        journeyLength = Vector3.Distance(startMarker.position, endMarker.position);
+        
         inTrigger = false;
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == ("Pullable"))
         {
+            startMarker = coll.gameObject;
+            journeyLength = Vector3.Distance(startMarker.transform.position, endMarker.transform.position);
             PullOBJ = coll.gameObject;
             inTrigger = true;
         }
@@ -49,6 +51,8 @@ public class GravityGun : MonoBehaviour
     {
         if (coll.gameObject.tag == ("Pullable"))
         {
+            //startMarker = null;
+            //PullOBJ = null;
             inTrigger = false;
         }
     }
@@ -56,8 +60,11 @@ public class GravityGun : MonoBehaviour
 
     void Shrink()
     {
-        if (PullOBJ.transform.localScale.sqrMagnitude > targetScale.sqrMagnitude)
+        if (PullOBJ != null && PullOBJ.transform.localScale.sqrMagnitude > targetScale.sqrMagnitude)
+        {
+            
             shrinking = true;
+        }
     }
 
     void Update()
@@ -69,21 +76,28 @@ public class GravityGun : MonoBehaviour
         }
         if (shrinking)
         {
-            float distCovered = (Time.time - startTime) * speed;
+            
+            float distCovered = Time.deltaTime * speed;
 
             // Fraction of journey completed = current distance divided by total distance.
-            float fracJourney = distCovered / journeyLength /2f;
-
+            float fracJourney = distCovered / journeyLength;
+            Debug.Log(distCovered);
             // Set our position as a fraction of the distance between the markers.
             
 
-            PullOBJ.transform.position = Vector3.Lerp(startMarker.position, endMarker.position, fracJourney);
+            PullOBJ.transform.position = Vector3.Lerp(startMarker.transform.position, endMarker.transform.position, fracJourney);
             //(PullOBJ.transform.position,
             // transform.position,
             // ForceSpeed * Time.deltaTime);
             PullOBJ.transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
         }
-        if (PullOBJ.transform.localScale.sqrMagnitude < targetScale.sqrMagnitude)
+        if (PullOBJ != null && PullOBJ.transform.localScale.sqrMagnitude < targetScale.sqrMagnitude)
+        {
             shrinking = false;
+            startMarker = null;
+            PullOBJ.SetActive(false);
+            PullOBJ = null;
+            
+        }
     }
 }
