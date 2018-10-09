@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace States
 {
-    public class GroundedState : DefaultState
+    public class GroundedIdleState : DefaultState
     {
         public override ICharacterState Jump(float input)
         {
@@ -19,7 +19,7 @@ namespace States
         {
             if(transform.position.y >= 2)
             {
-                return new AirborneState(new Vector3(0, 2, 0)); 
+                return new AirborneState(new Vector3(0, 10, 0)); 
             }
             return this; 
         }

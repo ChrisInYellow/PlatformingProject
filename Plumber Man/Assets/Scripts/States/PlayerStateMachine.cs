@@ -6,7 +6,7 @@ public class PlayerStateMachine : MonoBehaviour {
     public float movementSpeed;
     public float jumpingSpeed; 
 
-    private ICharacterState state = new GroundedState();
+    private ICharacterState state = new GroundedIdleState();
     private Rigidbody2D rb; 
 
     private void Start()

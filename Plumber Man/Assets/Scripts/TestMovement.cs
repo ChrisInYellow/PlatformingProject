@@ -34,7 +34,8 @@ public class TestMovement : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.W))
+        //if (Input.GetKeyDown(KeyCode.W))
+        if(Input.GetButtonDown("Jump"))
         {
             if (grounded == true)
             {
