@@ -29,6 +29,11 @@ public class HealthManager : MonoBehaviour {
         {
             health = numbofHearts;
         }
+
+        if(health == 0)
+        {
+            gameObject.SetActive(false); 
+        }
     }
 
     public void DrawHearts()
