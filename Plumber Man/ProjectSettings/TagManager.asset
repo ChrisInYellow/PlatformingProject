@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Pullable
+  - SmallObject
+  - LargeObject
   layers:
   - Default
   - TransparentFX
