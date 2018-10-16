@@ -8,6 +8,8 @@ TagManager:
   - Pullable
   - SmallObject
   - LargeObject
+  - Wall
+  - Floor
   layers:
   - Default
   - TransparentFX
