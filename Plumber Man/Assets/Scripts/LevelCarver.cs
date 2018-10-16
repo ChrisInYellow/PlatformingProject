@@ -6,7 +6,8 @@ public class LevelCarver : MonoBehaviour {
 
 
     public Transform[] startingPositions;
-    public GameObject[] rooms;
+    public GameObject[] rooms; //0 == LR, 1 == LRB, 2 == LBT, 3 == LRBT
+    public LayerMask roomLayer; 
 
     public float moveAmount;
     public float startTimeBtwRoom = 0.25f;
@@ -17,7 +18,9 @@ public class LevelCarver : MonoBehaviour {
 
     private int direction;
     private float timeBtwRoom;
-    private bool levelFinished; 
+    private bool levelFinished;
+
+    private int downCounter; 
 
 	// Use this for initialization
 	void Start () {
@@ -46,8 +49,12 @@ public class LevelCarver : MonoBehaviour {
         {
             if(transform.position.x < maxX)
             {
+                downCounter = 0; 
                 Vector2 newPos = new Vector2(transform.position.x + moveAmount, transform.position.y);
                 transform.position = newPos;
+
+                int rand = Random.Range(0, rooms.Length);
+                Instantiate(rooms[rand], transform.position, Quaternion.identity); 
 
                 direction = Random.Range(1, 6); 
 
@@ -69,8 +76,12 @@ public class LevelCarver : MonoBehaviour {
         {
             if(transform.position.x > minX)
             {
+                downCounter = 0; 
                 Vector2 newPos = new Vector2(transform.position.x - moveAmount, transform.position.y);
                 transform.position = newPos;
+
+                int rand = Random.Range(0, rooms.Length);
+                Instantiate(rooms[rand], transform.position, Quaternion.identity);
 
                 direction = Random.Range(3, 6);
             }
@@ -81,10 +92,39 @@ public class LevelCarver : MonoBehaviour {
         }
         else if(direction == 5)
         {
+            downCounter++; 
+
             if (transform.position.y>minY)
             {
+                Collider2D roomDetector = Physics2D.OverlapCircle(transform.position, 1, roomLayer);
+
+                if(roomDetector.GetComponent<RoomSelector>().type != 1 && roomDetector.GetComponent<RoomSelector>().type != 3)
+                {
+                    if(downCounter>=2)
+                    {
+                        roomDetector.GetComponent<RoomSelector>().RoomDestruction();
+                        Instantiate(rooms[3], transform.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        roomDetector.GetComponent<RoomSelector>().RoomDestruction();
+
+                        int randBottomRoom = Random.Range(1, 4); 
+                        if(randBottomRoom == 2)
+                        {
+                            randBottomRoom = 1; 
+                        }
+                        Instantiate(rooms[randBottomRoom], transform.position, Quaternion.identity);
+
+                    }
+
+                }
+
                 Vector2 newPos = new Vector2(transform.position.x, transform.position.y - moveAmount);
                 transform.position = newPos;
+
+                int rand = Random.Range(2, 4);
+                Instantiate(rooms[rand], transform.position, Quaternion.identity);
 
                 direction = Random.Range(1, 6);
             }
@@ -94,7 +134,7 @@ public class LevelCarver : MonoBehaviour {
             }
         }
 
-        Instantiate(rooms[0], transform.position, Quaternion.identity);
+        //Instantiate(rooms[0], transform.position, Quaternion.identity);
         //direction = Random.Range(1, 6);
     }
 }
