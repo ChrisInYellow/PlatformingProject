@@ -47,7 +47,18 @@ public class LevelCarver : MonoBehaviour {
             if(transform.position.x < maxX)
             {
                 Vector2 newPos = new Vector2(transform.position.x + moveAmount, transform.position.y);
-                transform.position = newPos; 
+                transform.position = newPos;
+
+                direction = Random.Range(1, 6); 
+
+                if(direction == 3)
+                {
+                    direction = 2; 
+                }
+                else if(direction == 4)
+                {
+                    direction = 5; 
+                }
             }
             else
             {
@@ -60,6 +71,8 @@ public class LevelCarver : MonoBehaviour {
             {
                 Vector2 newPos = new Vector2(transform.position.x - moveAmount, transform.position.y);
                 transform.position = newPos;
+
+                direction = Random.Range(3, 6);
             }
             else
             {
@@ -72,6 +85,8 @@ public class LevelCarver : MonoBehaviour {
             {
                 Vector2 newPos = new Vector2(transform.position.x, transform.position.y - moveAmount);
                 transform.position = newPos;
+
+                direction = Random.Range(1, 6);
             }
             else
             {
@@ -80,6 +95,6 @@ public class LevelCarver : MonoBehaviour {
         }
 
         Instantiate(rooms[0], transform.position, Quaternion.identity);
-        direction = Random.Range(1, 6);
+        //direction = Random.Range(1, 6);
     }
 }
