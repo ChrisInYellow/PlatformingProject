@@ -1,18 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 public class GravityGun : MonoBehaviour
 {
     public float shrinkSpeed = 0.1f;
     public bool shrinkingSmallObject = false;
     public bool shrinkingLargeObject = false;
     public SpriteRenderer sprite;
-    public GameObject PullOBJ;
+    //public GameObject PullOBJ;
     public float ForceSpeed;
     public Vector3 targetScale = new Vector3(1.2f, 1.2f, 1.2f);
     public bool smallObjectInTrigger;
     public bool largeObjectInTrigger;
-    public GameObject startMarker;
+    //public GameObject startMarker;
+    public List<GameObject> PullOBJ = new List<GameObject>();
+    public List<GameObject> FirstPullOBJ = new List<GameObject>();
+    public List<GameObject> startMarker = new List<GameObject>();
+    public List<GameObject> FirstStartMarker = new List<GameObject>();
     public GameObject endMarker;
     public float speed = 1.0F; 
     public float startTime; 
@@ -32,17 +37,28 @@ public class GravityGun : MonoBehaviour
     {
         if (coll.gameObject.tag == ("SmallObject"))
         {
-            startMarker = coll.gameObject;
-            journeyLength = Vector3.Distance(startMarker.transform.position, endMarker.transform.position);
-            PullOBJ = coll.gameObject;
+            if (!PullOBJ.Contains(coll.gameObject))
+            {
+                //FirstStartMarker.Add(coll.gameObject);
+                PullOBJ.Add(coll.gameObject);
+
+            }
+            //startMarker = coll.gameObject;
+            //journeyLength = Vector3.Distance(startMarker[0].transform.position, endMarker.transform.position);
+            //PullOBJ = coll.gameObject;
+            
             smallObjectInTrigger = true;
             largeObjectInTrigger = false;
+
         }
         else if (coll.gameObject.tag == ("LargeObject"))
         {
-            startMarker = coll.gameObject;
-            journeyLength = Vector3.Distance(startMarker.transform.position, endMarker.transform.position);
-            PullOBJ = coll.gameObject;
+            startMarker.Add(coll.gameObject);
+
+            //startMarker = coll.gameObject;
+            journeyLength = Vector3.Distance(startMarker[0].transform.position, endMarker.transform.position);
+            //PullOBJ = coll.gameObject;
+            PullOBJ.Add(coll.gameObject);
             largeObjectInTrigger = true;
             smallObjectInTrigger = false;
         }
@@ -52,7 +68,11 @@ public class GravityGun : MonoBehaviour
     {
         if (coll.gameObject.tag == ("SmallObject"))
         {
+            Debug.Log("Exit");
+            PullOBJ.Remove(coll.gameObject);
+            //FirstStartMarker.Remove(coll.gameObject);
             smallObjectInTrigger = false;
+
         }
         else if (coll.gameObject.tag == ("LargeObject"))
         {
@@ -67,6 +87,7 @@ public class GravityGun : MonoBehaviour
         
         
         objectShot.SetActive(true);
+        objectShot.GetComponent<BoxCollider2D>().isTrigger = false;
         objectShot.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         objectShot.GetComponent<ItemShot>().Shoot();
         
@@ -83,17 +104,22 @@ public class GravityGun : MonoBehaviour
         
     }
 
-    void ShrinkSmallObject()
-    {
-        if (PullOBJ != null && PullOBJ.transform.localScale.sqrMagnitude > targetScale.sqrMagnitude)
-        {
-            shrinkingSmallObject = true;
-        }
-    }
+    //void ShrinkSmallObject()
+    //{
+        //foreach (GameObject pull in PullOBJ)
+        //{
+        //    if (pull != null && pull.transform.localScale.sqrMagnitude > targetScale.sqrMagnitude)
+        //    {
+
+        //        shrinkingSmallObject = true;
+        //    }
+        //}
+        
+    //}
 
     void ShrinkLargeObject()
     {
-        if (PullOBJ != null && PullOBJ.transform.localScale.sqrMagnitude > targetScale.sqrMagnitude)
+        if (PullOBJ != null && PullOBJ[0].transform.localScale.sqrMagnitude > targetScale.sqrMagnitude)
         {
             shrinkingLargeObject = true;
         }
@@ -102,9 +128,22 @@ public class GravityGun : MonoBehaviour
     void Update()
     {
 
-        if (items.Count < 3 && smallObjectInTrigger && Input.GetMouseButton(1))
+        if (items.Count < 3 && smallObjectInTrigger && Input.GetMouseButtonUp(1))
         {
-            ShrinkSmallObject();
+            
+                Debug.Log("Copied");
+                //PullOBJ = FirstPullOBJ;
+                //startMarker = FirstStartMarker;
+                
+                foreach (GameObject pull in PullOBJ)
+                {
+                pull.GetComponent<BoxCollider2D>().isTrigger = true;
+                StartCoroutine(ShrinkOverTime(0.5f, pull));
+
+                }
+            
+            
+            //ShrinkSmallObject();
         }
 
         if (largeObjectInTrigger && Input.GetMouseButton(1))
@@ -118,54 +157,92 @@ public class GravityGun : MonoBehaviour
             ShootObject();
         }
 
-        if (shrinkingSmallObject)
-        {
-            float distCovered = Time.deltaTime * speed;
-            float fracJourney = distCovered / journeyLength;
-            PullOBJ.GetComponent<BoxCollider2D>().enabled = false;
-            startMarker.transform.position = Vector3.MoveTowards(startMarker.transform.position, endMarker.transform.position, speed * Time.deltaTime / 2f);
-            PullOBJ.transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
-        }
+        //if (shrinkingSmallObject)
+        //{
+        //    float distCovered = Time.deltaTime * speed;
+        //    float fracJourney = distCovered / journeyLength;
+        //    //for (int i = 0; i < PullOBJ.Count; i++)
+        //    //{
+        //    //    PullOBJ[i].GetComponent<BoxCollider2D>().enabled = false;
 
-        if (shrinkingLargeObject)
-        {
+        //    //    PullOBJ[i].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
+        //    //}
+        //    foreach (GameObject pull in PullOBJ.ToList())
+        //    {
 
-            float distCovered = Time.deltaTime * speed;
-            float fracJourney = distCovered / journeyLength;
-            PullOBJ.GetComponent<BoxCollider2D>().enabled = false;
-            startMarker.transform.position = Vector3.MoveTowards(startMarker.transform.position, endMarker.transform.position, speed * Time.deltaTime / 2f);
-            PullOBJ.transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed * 4f;
-        }
-        if (shrinkingLargeObject && PullOBJ != null && PullOBJ.transform.localScale.sqrMagnitude < targetScale.sqrMagnitude)
-        {
 
-            smallObjectInTrigger = false;
-            largeObjectInTrigger = false;
-            shrinkingSmallObject = false;
-            shrinkingLargeObject = false;
-            startMarker = null;
-            items.Add(PullOBJ);
-            PullOBJ.transform.parent = gun.transform;
-            PullOBJ.transform.rotation = transform.parent.rotation;
-            PullOBJ.SetActive(false);
-            PullOBJ = null;
+                
+        //        pull.transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
+        //        pull.transform.position = Vector3.MoveTowards(pull.transform.position, endMarker.transform.position, speed * Time.deltaTime / 2f);
 
-        }
-        if (shrinkingSmallObject && PullOBJ != null && PullOBJ.transform.localScale.sqrMagnitude < targetScale.sqrMagnitude)
-        {
+        //        pull.GetComponent<BoxCollider2D>().isTrigger = true;
+
+        //    }
             
-            smallObjectInTrigger = false;
-            largeObjectInTrigger = false;
-            shrinkingSmallObject = false;
-            shrinkingLargeObject = false;
-            startMarker = null;
-            items.Add(PullOBJ);
-            PullOBJ.transform.parent = gun.transform;
-            PullOBJ.transform.rotation = transform.parent.rotation;
-            PullOBJ.SetActive(false);
-            PullOBJ = null;
 
-        }
+        //    //foreach (GameObject starter in startMarker)
+        //    //{
+        //    //    starter.transform.position = Vector3.MoveTowards(starter.transform.position, endMarker.transform.position, speed * Time.deltaTime / 2f);
+
+        //    //}
+
+        //}
+
+        //if (shrinkingLargeObject)
+        //{
+
+        //    float distCovered = Time.deltaTime * speed;
+        //    float fracJourney = distCovered / journeyLength;
+        //    PullOBJ[0].GetComponent<BoxCollider2D>().enabled = false;
+        //    startMarker[0].transform.position = Vector3.MoveTowards(startMarker[0].transform.position, endMarker.transform.position, speed * Time.deltaTime / 2f);
+        //    PullOBJ[0].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed * 4f;
+        //}
+        //if (shrinkingLargeObject && PullOBJ != null && PullOBJ[0].transform.localScale.sqrMagnitude < targetScale.sqrMagnitude)
+        //{
+
+        //    smallObjectInTrigger = false;
+        //    largeObjectInTrigger = false;
+        //    shrinkingSmallObject = false;
+        //    shrinkingLargeObject = false;
+        //    startMarker.Remove(startMarker[0]);
+        //    items.Add(PullOBJ[0]);
+        //    PullOBJ[0].transform.parent = gun.transform;
+        //    PullOBJ[0].transform.rotation = transform.parent.rotation;
+        //    PullOBJ[0].SetActive(false);
+        //    PullOBJ.Remove(PullOBJ[0]);
+
+        //}
+        //if (shrinkingSmallObject)
+        //{
+        //    foreach (GameObject pull in PullOBJ.ToList())
+        //    {
+        //        if (pull.transform.localScale.sqrMagnitude < targetScale.sqrMagnitude)
+        //        {
+        //            smallObjectInTrigger = false;
+        //            largeObjectInTrigger = false;
+        //            //shrinkingSmallObject = false;
+        //            shrinkingLargeObject = false;
+        //            //startMarker.Remove(startMarker[0]);
+        //            items.Add(pull);
+        //            pull.transform.parent = gun.transform;
+        //            pull.transform.rotation = transform.parent.rotation;
+        //            pull.SetActive(false);
+        //            PullOBJ.Remove(pull);
+                    
+        //        }
+        //    }
+        //    //smallObjectInTrigger = false;
+        //    //largeObjectInTrigger = false;
+        //    //shrinkingSmallObject = false;
+        //    //shrinkingLargeObject = false;
+        //    //startMarker.Remove(startMarker[0]);
+        //    //items.Add(PullOBJ[0]);
+        //    //PullOBJ[0].transform.parent = gun.transform;
+        //    //PullOBJ[0].transform.rotation = transform.parent.rotation;
+        //    //PullOBJ[0].SetActive(false);
+        //    //PullOBJ.Remove(PullOBJ[0]);
+
+        //}
 
     }
 
@@ -189,6 +266,31 @@ public class GravityGun : MonoBehaviour
         } while (currentTime <= time);
 
 
+    }
+    IEnumerator ShrinkOverTime(float time, GameObject pull)
+    {
+
+
+        float distCovered = Time.deltaTime * speed;
+        float fracJourney = distCovered / journeyLength;
+
+        float currentTime = 0.0f;
+        Debug.Log(currentTime);
+        do
+        {
+            pull.transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
+            pull.transform.position = Vector3.MoveTowards(pull.transform.position, endMarker.transform.position, speed * Time.deltaTime / 2f);
+
+            yield return null;
+        } while (pull.transform.localScale.sqrMagnitude > targetScale.sqrMagnitude);
+
+        pull.GetComponent<BoxCollider2D>().isTrigger = false;
+        items.Add(pull);
+        pull.transform.parent = gun.transform;
+        pull.transform.rotation = transform.parent.rotation;
+        pull.SetActive(false);
+        PullOBJ.Remove(pull);
+        smallObjectInTrigger = false;
     }
 
 }
