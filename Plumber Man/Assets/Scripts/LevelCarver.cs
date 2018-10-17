@@ -22,7 +22,6 @@ public class LevelCarver : MonoBehaviour {
 
     private int downCounter; 
 
-	// Use this for initialization
 	void Start () {
         int randStartingPos = Random.Range(0, startingPositions.Length);
         transform.position = startingPositions[randStartingPos].position;
@@ -31,7 +30,6 @@ public class LevelCarver : MonoBehaviour {
         direction = Random.Range(1, 6);
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if (timeBtwRoom <= 0 && levelFinished == false)
         {
@@ -72,7 +70,7 @@ public class LevelCarver : MonoBehaviour {
                 direction = 5; 
             }
         }
-        else if(direction == 3 || direction ==4)
+        else if(direction == 3 || direction == 4)
         {
             if(transform.position.x > minX)
             {
@@ -133,8 +131,5 @@ public class LevelCarver : MonoBehaviour {
                 levelFinished = true; 
             }
         }
-
-        //Instantiate(rooms[0], transform.position, Quaternion.identity);
-        //direction = Random.Range(1, 6);
     }
 }
