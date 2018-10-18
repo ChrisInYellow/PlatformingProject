@@ -51,17 +51,17 @@ public class GravityGun : MonoBehaviour
             largeObjectInTrigger = false;
 
         }
-        else if (coll.gameObject.tag == ("LargeObject"))
-        {
-            startMarker.Add(coll.gameObject);
+        //else if (coll.gameObject.tag == ("LargeObject"))
+        //{
+        //    startMarker.Add(coll.gameObject);
 
-            //startMarker = coll.gameObject;
-            journeyLength = Vector3.Distance(startMarker[0].transform.position, endMarker.transform.position);
-            //PullOBJ = coll.gameObject;
-            PullOBJ.Add(coll.gameObject);
-            largeObjectInTrigger = true;
-            smallObjectInTrigger = false;
-        }
+        //    //startMarker = coll.gameObject;
+        //    journeyLength = Vector3.Distance(startMarker[0].transform.position, endMarker.transform.position);
+        //    //PullOBJ = coll.gameObject;
+        //    PullOBJ.Add(coll.gameObject);
+        //    largeObjectInTrigger = true;
+        //    smallObjectInTrigger = false;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D coll)
@@ -74,10 +74,10 @@ public class GravityGun : MonoBehaviour
             smallObjectInTrigger = false;
 
         }
-        else if (coll.gameObject.tag == ("LargeObject"))
-        {
-            largeObjectInTrigger = false;
-        }
+        //else if (coll.gameObject.tag == ("LargeObject"))
+        //{
+        //    largeObjectInTrigger = false;
+        //}
     }
 
     void ShootObject()
@@ -117,13 +117,13 @@ public class GravityGun : MonoBehaviour
         
     //}
 
-    void ShrinkLargeObject()
-    {
-        if (PullOBJ != null && PullOBJ[0].transform.localScale.sqrMagnitude > targetScale.sqrMagnitude)
-        {
-            shrinkingLargeObject = true;
-        }
-    }
+    //void ShrinkLargeObject()
+    //{
+    //    if (PullOBJ != null && PullOBJ[0].transform.localScale.sqrMagnitude > targetScale.sqrMagnitude)
+    //    {
+    //        shrinkingLargeObject = true;
+    //    }
+    //}
 
     void Update()
     {
@@ -146,10 +146,10 @@ public class GravityGun : MonoBehaviour
             //ShrinkSmallObject();
         }
 
-        if (largeObjectInTrigger && Input.GetMouseButton(1))
-        {
-        ShrinkLargeObject();
-        }
+        //if (largeObjectInTrigger && Input.GetMouseButton(1))
+        //{
+        //ShrinkLargeObject();
+        //}
         if (!items.Count.Equals(0) && Input.GetMouseButtonDown(0))
         {
             Debug.Log("Shot");
