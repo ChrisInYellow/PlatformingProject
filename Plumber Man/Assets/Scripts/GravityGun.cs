@@ -26,19 +26,21 @@ public class GravityGun : MonoBehaviour
     public List<GameObject> items = new List<GameObject>();
     public GameObject objectShot;
     public Transform shootPos;
-    
+    public bool shrinking;
+    JumpPad jumpPad;
     void Start()
     {
-        
+        shrinking = false;
         largeObjectInTrigger = false;
         smallObjectInTrigger = false;
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == ("SmallObject"))
+        if (coll.gameObject.tag == ("SmallObject") || coll.gameObject.tag == ("JumpPad"))
         {
             if (!PullOBJ.Contains(coll.gameObject))
             {
+                
                 //FirstStartMarker.Add(coll.gameObject);
                 PullOBJ.Add(coll.gameObject);
 
@@ -47,7 +49,7 @@ public class GravityGun : MonoBehaviour
             //journeyLength = Vector3.Distance(startMarker[0].transform.position, endMarker.transform.position);
             //PullOBJ = coll.gameObject;
             
-            smallObjectInTrigger = true;
+            //smallObjectInTrigger = true;
             largeObjectInTrigger = false;
 
         }
@@ -66,12 +68,12 @@ public class GravityGun : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == ("SmallObject"))
+        if (coll.gameObject.tag == ("SmallObject") || coll.gameObject.tag == ("JumpPad"))
         {
             Debug.Log("Exit");
             PullOBJ.Remove(coll.gameObject);
             //FirstStartMarker.Remove(coll.gameObject);
-            smallObjectInTrigger = false;
+            //smallObjectInTrigger = false;
 
         }
         //else if (coll.gameObject.tag == ("LargeObject"))
@@ -128,7 +130,7 @@ public class GravityGun : MonoBehaviour
     void Update()
     {
 
-        if (items.Count < 3 && smallObjectInTrigger && Input.GetMouseButtonUp(1))
+        if (items.Count < 3 && !shrinking && Input.GetMouseButtonDown(1))
         {
             
                 Debug.Log("Copied");
@@ -137,6 +139,10 @@ public class GravityGun : MonoBehaviour
                 
                 foreach (GameObject pull in PullOBJ)
                 {
+                //if (pull.gameObject.tag == ("JumpPad"))
+                //{
+                //    pull.transform.GetChild(0).gameObject.SetActive(false);
+                //}
                 pull.GetComponent<BoxCollider2D>().isTrigger = true;
                 StartCoroutine(ShrinkOverTime(0.5f, pull));
 
@@ -171,14 +177,14 @@ public class GravityGun : MonoBehaviour
         //    {
 
 
-                
+
         //        pull.transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
         //        pull.transform.position = Vector3.MoveTowards(pull.transform.position, endMarker.transform.position, speed * Time.deltaTime / 2f);
 
         //        pull.GetComponent<BoxCollider2D>().isTrigger = true;
 
         //    }
-            
+
 
         //    //foreach (GameObject starter in startMarker)
         //    //{
@@ -228,7 +234,7 @@ public class GravityGun : MonoBehaviour
         //            pull.transform.rotation = transform.parent.rotation;
         //            pull.SetActive(false);
         //            PullOBJ.Remove(pull);
-                    
+
         //        }
         //    }
         //    //smallObjectInTrigger = false;
@@ -243,6 +249,10 @@ public class GravityGun : MonoBehaviour
         //    //PullOBJ.Remove(PullOBJ[0]);
 
         //}
+        if (items.Count > 3)
+        {
+            items.Remove(items[items.Count - 1]);
+        }
 
     }
 
@@ -265,15 +275,15 @@ public class GravityGun : MonoBehaviour
             yield return null;
         } while (currentTime <= time);
 
-
+        
     }
     IEnumerator ShrinkOverTime(float time, GameObject pull)
     {
-
+        
 
         float distCovered = Time.deltaTime * speed;
         float fracJourney = distCovered / journeyLength;
-
+        shrinking = true;
         float currentTime = 0.0f;
         Debug.Log(currentTime);
         do
@@ -283,7 +293,8 @@ public class GravityGun : MonoBehaviour
 
             yield return null;
         } while (pull.transform.localScale.sqrMagnitude > targetScale.sqrMagnitude);
-
+        
+        shrinking = false;
         pull.GetComponent<BoxCollider2D>().isTrigger = false;
         items.Add(pull);
         pull.transform.parent = gun.transform;

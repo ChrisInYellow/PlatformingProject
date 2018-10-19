@@ -10,6 +10,7 @@ TagManager:
   - LargeObject
   - Wall
   - Floor
+  - JumpPad
   layers:
   - Default
   - TransparentFX

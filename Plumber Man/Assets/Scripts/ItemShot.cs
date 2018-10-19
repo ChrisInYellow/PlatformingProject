@@ -8,9 +8,13 @@ public class ItemShot : MonoBehaviour
     public float bulletSpeed = 20f;
 
     public Rigidbody2D rb;
-
+    GravityGun gravityGun;
 
     // Use this for initialization
+    void Start()
+    {
+        gravityGun = GameObject.FindGameObjectWithTag("Player").GetComponent<GravityGun>();
+    }
     public void Shoot()
     {
         Debug.Log("Toto");
@@ -48,6 +52,11 @@ public class ItemShot : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
+        //if (rb.gameObject.tag == "JumpPad" && gravityGun.shrinking == false)
+        //{
+        //    Debug.Log("COLLIDED");
+        //    rb.transform.GetChild(0).gameObject.SetActive(true);
+        //}
 
     }
     IEnumerator WaitKinematicWall()
