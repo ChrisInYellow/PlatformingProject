@@ -558,7 +558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &748701196
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1000,7 +1000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1110349213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,6 +1129,7 @@ GameObject:
   - component: {fileID: 1387635803}
   - component: {fileID: 1387635805}
   - component: {fileID: 1387635806}
+  - component: {fileID: 1387635807}
   m_Layer: 4
   m_Name: sprite_wall_single_platform
   m_TagString: Wall
@@ -1218,7 +1219,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 5.12}
+  m_Size: {x: 1.03, y: 5.12}
   m_EdgeRadius: 0
 --- !u!61 &1387635806
 BoxCollider2D:
@@ -1243,8 +1244,28 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 5.12}
+  m_Size: {x: 0.91, y: 5.12}
   m_EdgeRadius: 0
+--- !u!50 &1387635807
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1387635802}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &1436619657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,7 +1284,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1436619658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1485,13 +1506,14 @@ Prefab:
     - target: {fileID: 61282478320117618, guid: adc654fad684e3a4394f340e6ebfa36a,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1661893581421144, guid: adc654fad684e3a4394f340e6ebfa36a, type: 2}
       propertyPath: m_TagString
       value: SmallObject
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114321886306106092, guid: adc654fad684e3a4394f340e6ebfa36a, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: adc654fad684e3a4394f340e6ebfa36a, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2038975612
@@ -1508,7 +1530,7 @@ GameObject:
   - component: {fileID: 2038975613}
   - component: {fileID: 2038975618}
   m_Layer: 0
-  m_Name: Player_placeholder
+  m_Name: ww
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1632,7 +1654,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2038975612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.64, y: 1.1516275, z: 0}
+  m_LocalPosition: {x: -0.08, y: 1.1516275, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1793639315}

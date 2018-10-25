@@ -19,19 +19,22 @@ public class ItemShot : MonoBehaviour
     {
         Debug.Log("Toto");
         GetComponent<BoxCollider2D>().enabled = true;
+        
+        GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
         rb.velocity = transform.right * bulletSpeed;
     }
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
 
         if (col.gameObject.tag == "Wall")
         {
             //rb.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            rb.velocity = Vector2.zero;
-            //rb.isKinematic = true;
+            //rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
             
-            StartCoroutine(WaitKinematicWall());
-            rb.transform.localRotation = Quaternion.Euler(0, 0, 90);
+            //StartCoroutine(WaitKinematicWall());
+            rb.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            rb.velocity = Vector2.zero;
         }
         if (col.gameObject.tag == "Ground")
         {

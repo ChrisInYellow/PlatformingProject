@@ -89,6 +89,7 @@ public class GravityGun : MonoBehaviour
         
         
         objectShot.SetActive(true);
+        objectShot.GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
         objectShot.GetComponent<BoxCollider2D>().isTrigger = false;
         objectShot.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         objectShot.GetComponent<ItemShot>().Shoot();
@@ -139,12 +140,15 @@ public class GravityGun : MonoBehaviour
                 
                 foreach (GameObject pull in PullOBJ)
                 {
+                
+                
                 //if (pull.gameObject.tag == ("JumpPad"))
                 //{
                 //    pull.transform.GetChild(0).gameObject.SetActive(false);
                 //}
+                //Destroy(pull.GetComponent<FixedJoint2D);
                 pull.GetComponent<BoxCollider2D>().isTrigger = true;
-                StartCoroutine(ShrinkOverTime(0.5f, pull));
+                StartCoroutine(ShrinkOverTime(0.3f, pull));
 
                 }
             
@@ -279,8 +283,8 @@ public class GravityGun : MonoBehaviour
     }
     IEnumerator ShrinkOverTime(float time, GameObject pull)
     {
-        
 
+        pull.transform.GetComponent<Rigidbody2D>().isKinematic = true;
         float distCovered = Time.deltaTime * speed;
         float fracJourney = distCovered / journeyLength;
         shrinking = true;
