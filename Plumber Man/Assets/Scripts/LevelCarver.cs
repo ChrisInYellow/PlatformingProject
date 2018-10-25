@@ -17,6 +17,9 @@ public class LevelCarver : MonoBehaviour
        public float maxX;
        public float minY; */
 
+    public int width;
+    public int depth; 
+
     private float timeBtwRoom;
     private bool levelFinished;
 
@@ -44,7 +47,73 @@ public class LevelCarver : MonoBehaviour
 
     private void CarveLevel()
     {
+        if(carvingDir == Directions.Right)
+        {
+            if(transform.position.x < width)
+            {
+                downCounter = 0;
+                Vector2 pos = new Vector2(transform.position.x + moveIncrement, transform.position.y);
 
+                int randRoom = Random.Range(1, 4);
+                Instantiate(rooms[randRoom], transform.position, Quaternion.identity);
+            }
+            else
+            {
+                carvingDir = Directions.Down; 
+            }
+        }
+        else if(carvingDir == Directions.Left)
+        {
+            if(transform.position.x > 0)
+            {
+                downCounter = 0;
+                Vector2 pos = new Vector2(transform.position.x - moveIncrement, transform.position.y);
+                transform.position = pos; 
+            }
+            else
+            {
+                carvingDir = Directions.Down; 
+            }
+        }
+        else if (carvingDir == Directions.Down)
+        {
+            downCounter++; 
+            if(transform.position.y > depth)
+            {
+                Collider2D previousRoom = Physics2D.OverlapCircle(transform.position, 1, roomLayer); 
+
+                if (previousRoom.GetComponent<RoomSelector>().type != 4 && previousRoom.GetComponent<RoomSelector>().type != 2)
+                {
+                    if(downCounter >=2)
+                    {
+                        previousRoom.GetComponent<RoomSelector>().RoomDestruction();
+                        Instantiate(rooms[4], transform.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        previousRoom.GetComponent<RoomSelector>().RoomDestruction();
+                        int randRoomDownOpening = Random.Range(2, 5);
+                        if (randRoomDownOpening == 3)
+                        {
+                            randRoomDownOpening = 2; 
+                        }
+                        Instantiate(rooms[randRoomDownOpening], transform.position, Quaternion.identity);
+                    }
+                }
+
+                Vector2 pos = new Vector2(transform.position.x, transform.position.y - moveIncrement);
+                transform.position = pos;
+
+                int randRoom = Random.Range(3, 5);
+                Instantiate(rooms[randRoom], transform.position, Quaternion.identity);
+
+                dir = Random.Range(1, 6);
+            }
+            else
+            {
+                levelFinished = true; 
+            }
+        }
     }
 
     private void CalculateRoute()
