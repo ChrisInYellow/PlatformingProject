@@ -129,6 +129,8 @@ public class LevelCarver : MonoBehaviour {
             else
             {
                 levelFinished = true; 
+
+                fart
             }
         }
     }
