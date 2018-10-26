@@ -354,6 +354,48 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224095141084038040, guid: b90d8d8c42d347244aed3fdd8b0cc1dc,
     type: 2}
   m_PrefabInternal: {fileID: 450213853}
+--- !u!1001 &488816728
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4757311380326372, guid: d5110436785263e4faf25c12239620e7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -40.674454
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757311380326372, guid: d5110436785263e4faf25c12239620e7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -5.6632257
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757311380326372, guid: d5110436785263e4faf25c12239620e7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757311380326372, guid: d5110436785263e4faf25c12239620e7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757311380326372, guid: d5110436785263e4faf25c12239620e7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757311380326372, guid: d5110436785263e4faf25c12239620e7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757311380326372, guid: d5110436785263e4faf25c12239620e7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757311380326372, guid: d5110436785263e4faf25c12239620e7, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5110436785263e4faf25c12239620e7, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &946872398
 Prefab:
   m_ObjectHideFlags: 0
@@ -733,11 +775,10 @@ MonoBehaviour:
   roomLayer:
     serializedVersion: 2
     m_Bits: 1024
-  moveAmount: 10
+  moveIncrement: 10
   startTimeBtwRoom: 1
-  minX: -5
-  maxX: 13
-  minY: -20
+  width: 5.55
+  depth: -24.45
 --- !u!4 &1376147388
 Transform:
   m_ObjectHideFlags: 0

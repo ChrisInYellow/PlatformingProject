@@ -17,8 +17,8 @@ public class LevelCarver : MonoBehaviour
        public float maxX;
        public float minY; */
 
-    public int width;
-    public int depth; 
+    public float width;
+    public float depth; 
 
     private float timeBtwRoom;
     private bool levelFinished;
@@ -33,7 +33,7 @@ public class LevelCarver : MonoBehaviour
     {
         int randStartingPos = Random.Range(0, startingPositions.Length);
         transform.position = startingPositions[randStartingPos].position;
-
+        Instantiate(rooms[1], transform.position, Quaternion.identity);
         CalculateRoute();
     }
 
@@ -53,9 +53,11 @@ public class LevelCarver : MonoBehaviour
             {
                 downCounter = 0;
                 Vector2 pos = new Vector2(transform.position.x + moveIncrement, transform.position.y);
+                transform.position = pos; 
 
                 int randRoom = Random.Range(1, 4);
                 Instantiate(rooms[randRoom], transform.position, Quaternion.identity);
+
             }
             else
             {
@@ -68,7 +70,10 @@ public class LevelCarver : MonoBehaviour
             {
                 downCounter = 0;
                 Vector2 pos = new Vector2(transform.position.x - moveIncrement, transform.position.y);
-                transform.position = pos; 
+                transform.position = pos;
+
+                int randRoom = Random.Range(1, 4);
+                Instantiate(rooms[randRoom], transform.position, Quaternion.identity);
             }
             else
             {
