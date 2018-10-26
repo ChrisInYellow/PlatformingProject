@@ -23,7 +23,7 @@ public class ItemShot : MonoBehaviour
         GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
         rb.velocity = transform.right * bulletSpeed;
     }
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
 
         if (col.gameObject.tag == "Wall")
@@ -31,9 +31,11 @@ public class ItemShot : MonoBehaviour
             //rb.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             //rb.velocity = Vector2.zero;
             rb.isKinematic = true;
-            
-            //StartCoroutine(WaitKinematicWall());
-            rb.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            Debug.Log("Heyooooo");
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+            StartCoroutine(WaitKinematic());
+            //rb.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            rb.transform.localRotation = Quaternion.identity;
             rb.velocity = Vector2.zero;
         }
         if (col.gameObject.tag == "Ground")
@@ -55,6 +57,8 @@ public class ItemShot : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        yield return null;
         //if (rb.gameObject.tag == "JumpPad" && gravityGun.shrinking == false)
         //{
         //    Debug.Log("COLLIDED");
@@ -64,14 +68,15 @@ public class ItemShot : MonoBehaviour
     }
     IEnumerator WaitKinematicWall()
     {
-
+        rb.isKinematic = false;
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.05f);
-        rb.isKinematic = false;
+        //rb.isKinematic = false;
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.05f);
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
+        
 
     }
 }

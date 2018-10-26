@@ -140,13 +140,14 @@ public class GravityGun : MonoBehaviour
                 
                 foreach (GameObject pull in PullOBJ)
                 {
-                
-                
+
+
                 //if (pull.gameObject.tag == ("JumpPad"))
                 //{
                 //    pull.transform.GetChild(0).gameObject.SetActive(false);
                 //}
                 //Destroy(pull.GetComponent<FixedJoint2D);
+                
                 pull.GetComponent<BoxCollider2D>().isTrigger = true;
                 StartCoroutine(ShrinkOverTime(0.3f, pull));
 
@@ -283,7 +284,7 @@ public class GravityGun : MonoBehaviour
     }
     IEnumerator ShrinkOverTime(float time, GameObject pull)
     {
-
+        pull.transform.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         pull.transform.GetComponent<Rigidbody2D>().isKinematic = true;
         float distCovered = Time.deltaTime * speed;
         float fracJourney = distCovered / journeyLength;
@@ -293,7 +294,7 @@ public class GravityGun : MonoBehaviour
         do
         {
             pull.transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
-            pull.transform.position = Vector3.MoveTowards(pull.transform.position, endMarker.transform.position, speed * Time.deltaTime / 2f);
+            pull.transform.position = Vector3.MoveTowards(pull.transform.position, endMarker.transform.position, speed * Time.deltaTime/ 1.5f);
 
             yield return null;
         } while (pull.transform.localScale.sqrMagnitude > targetScale.sqrMagnitude);
