@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class LevelCarver : MonoBehaviour
 
     /* public float minX;
        public float maxX;
-       public float minY; */
+       public float minY; 
 
     public float width;
     public float depth; 
@@ -25,9 +25,7 @@ public class LevelCarver : MonoBehaviour
 
     private int downCounter;
 
-    private enum Directions { None, Right, Left, Down }
-    private Directions carvingDir;
-    private int dir;
+
 
     private void Awake()
     {
@@ -143,6 +141,118 @@ public class LevelCarver : MonoBehaviour
         
     }
 
+}*/
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LevelCarver : MonoBehaviour
+{
+    public Transform[] startingPositions;
+    public Transform[] endPositons; 
+    public float moveIncrement;
+    public ObjectSpawner startRoom;
+    public ObjectSpawner endRoom; 
+
+    private ObjectSpawner[] path;
+    private bool pathCreated;
+    private enum Directions { None, Right, Left, Down }
+    private Directions carvingDir;
+    private int dir;
+    private float width; 
+    private int downCounter;
+
+    private void Awake()
+    {
+        var spawningPoints = GameObject.FindObjectsOfType<ObjectSpawner>();
+        CalculateGrid();
+        CarvePath(spawningPoints); 
+    }
+
+    public void CarvePath(ObjectSpawner[] spawningPoints)
+    {
+        int randStartPos = Random.Range(0, 5);
+        transform.position = startingPositions[randStartPos].position;
+        
+        if(startingPositions[randStartPos].GetComponent<ObjectSpawner>())
+        {
+            startRoom = startingPositions[randStartPos].GetComponent<ObjectSpawner>();
+            startRoom.type = 1; 
+        }
+
+        for (int i = 0; i<spawningPoints.Length; i++)
+        {
+            CalculateDirection();
+
+            if(transform.position == spawningPoints[i].transform.position)
+            {
+                var currentRoom = spawningPoints[i].GetComponent<ObjectSpawner>();
+
+                if (carvingDir != Directions.Down)
+                {
+                    int randRoom = Random.Range(1, 4);
+                    currentRoom.type = randRoom; 
+                }
+                if(carvingDir == Directions.Down)
+                {
+                    if (downCounter >= 2)
+                    {
+                        //previousRoom.GetComponent<RoomSelector>().RoomDestruction();
+                        //Instantiate(rooms[4], transform.position, Quaternion.identity);
+                        currentRoom.type = 4; 
+                    }
+                    else
+                    {
+                        //previousRoom.GetComponent<RoomSelector>().RoomDestruction();
+                        int randRoomDownOpening = Random.Range(2, 5);
+                        if (randRoomDownOpening == 3)
+                        {
+                            randRoomDownOpening = 2;
+                        }
+                        currentRoom.type = randRoomDownOpening; 
+                    }
+                }
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    public void CalculateDirection()
+    {
+        dir = Random.Range(1, 6);
+
+        if (dir > 5)
+        {
+            if (dir == 1 || dir == 2)
+            {
+                carvingDir = Directions.Right;
+            }
+            else
+            {
+                carvingDir = Directions.Left;
+            }
+        }
+        else if (dir == 5)
+        {
+            carvingDir = Directions.Down;
+        }
+    }
+
+    public void CalculateGrid()
+    {
+        for(int i = 0; i < startingPositions.Length; i++)
+        {
+            if(startingPositions[i].transform.position.x<startingPositions[i+1].transform.position.x)
+            {
+                width = startingPositions[i].transform.position.x;
+            }
+        }
+    }
 }
 
-	
+
+
+
