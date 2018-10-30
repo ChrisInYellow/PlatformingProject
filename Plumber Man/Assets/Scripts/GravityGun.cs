@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 public class GravityGun : MonoBehaviour
 {
+    public ParticleSystem system;
+    public ParticleSystem system1;
+    public ParticleSystem system2;
+    public ParticleSystem system3;
+    public ParticleSystem system4;
+    public ParticleSystem system5;
     public float shrinkSpeed = 0.1f;
     public bool shrinkingSmallObject = false;
     public bool shrinkingLargeObject = false;
@@ -135,10 +141,15 @@ public class GravityGun : MonoBehaviour
         {
             
                 Debug.Log("Copied");
-                //PullOBJ = FirstPullOBJ;
-                //startMarker = FirstStartMarker;
-                
-                foreach (GameObject pull in PullOBJ)
+            //PullOBJ = FirstPullOBJ;
+            //startMarker = FirstStartMarker;
+            system.Play();
+            system1.Play();
+            system2.Play();
+            system3.Play();
+            system4.Play();
+            system5.Play();
+            foreach (GameObject pull in PullOBJ)
                 {
 
 
