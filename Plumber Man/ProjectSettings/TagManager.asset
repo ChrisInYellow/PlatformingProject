@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - Floor
   - JumpPad
+  - Enemy
   layers:
   - Default
   - TransparentFX

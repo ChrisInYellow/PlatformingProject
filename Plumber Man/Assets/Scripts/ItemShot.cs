@@ -41,7 +41,7 @@ public class ItemShot : MonoBehaviour
         if (col.gameObject.tag == "Ground")
         {
             rb.velocity = Vector2.zero;
-            Debug.Log("Kine");
+            Debug.Log("Kine1111");
             rb.transform.localRotation = Quaternion.identity;
             StartCoroutine(WaitKinematic());
             //rb.isKinematic = true;

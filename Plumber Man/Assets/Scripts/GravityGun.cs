@@ -41,7 +41,7 @@ public class GravityGun : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == ("SmallObject") || coll.gameObject.tag == ("JumpPad"))
+        if (coll.gameObject.tag == ("SmallObject") || coll.gameObject.tag == ("JumpPad") || coll.gameObject.tag == ("Enemy"))
         {
             if (!PullOBJ.Contains(coll.gameObject))
             {
@@ -59,7 +59,7 @@ public class GravityGun : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == ("SmallObject") || coll.gameObject.tag == ("JumpPad"))
+        if (coll.gameObject.tag == ("SmallObject") || coll.gameObject.tag == ("JumpPad") || coll.gameObject.tag == ("Enemy"))
         {
             Debug.Log("Exit");
             PullOBJ.Remove(coll.gameObject);
@@ -77,9 +77,18 @@ public class GravityGun : MonoBehaviour
         
         objectShot.SetActive(true);
         objectShot.GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
+        
         objectShot.GetComponent<BoxCollider2D>().isTrigger = false;
         objectShot.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        objectShot.GetComponent<ItemShot>().Shoot();
+        if (objectShot.tag == "SmallObject")
+        {
+            objectShot.GetComponent<ItemShot>().Shoot();
+        }
+        else if (objectShot.tag == "Enemy")
+        {
+            objectShot.GetComponent<EnemyShot>().Shoot();
+        }
+        
         
 
         Debug.Log("Instantiated");
@@ -114,8 +123,11 @@ public class GravityGun : MonoBehaviour
                 {
 
 
-                
-                
+
+                if (pull.gameObject.tag == "Enemy")
+                {
+                    Destroy(pull.GetComponent<Trap>());
+                }
                 pull.GetComponent<BoxCollider2D>().isTrigger = true;
                 StartCoroutine(ShrinkOverTime(0.3f, pull));
 
@@ -154,8 +166,11 @@ public class GravityGun : MonoBehaviour
         do
         {
             Debug.Log("Hey");
-            objectShot.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / time);
-            currentTime += Time.deltaTime;
+            if (objectShot.gameObject != null)
+            {
+                objectShot.transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / time);
+                currentTime += Time.deltaTime;
+            }
             
             yield return null;
         } while (currentTime <= time);
