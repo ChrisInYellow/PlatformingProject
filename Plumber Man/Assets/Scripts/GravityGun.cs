@@ -41,7 +41,7 @@ public class GravityGun : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == ("SmallObject") || coll.gameObject.tag == ("JumpPad") || coll.gameObject.tag == ("Enemy"))
+        if (coll.gameObject.tag == ("SmallObject") || coll.gameObject.tag == ("JumpPad"))
         {
             if (!PullOBJ.Contains(coll.gameObject))
             {
@@ -53,6 +53,10 @@ public class GravityGun : MonoBehaviour
             
             
 
+        }
+        if (coll.gameObject.tag == ("Enemy") && coll.GetComponent<EnemyShot>().used == false)
+        {
+            PullOBJ.Add(coll.gameObject);
         }
         
     }
@@ -86,6 +90,7 @@ public class GravityGun : MonoBehaviour
         }
         else if (objectShot.tag == "Enemy")
         {
+            objectShot.GetComponent<EnemyShot>().used = true;
             objectShot.GetComponent<EnemyShot>().Shoot();
         }
         
@@ -173,7 +178,7 @@ public class GravityGun : MonoBehaviour
             }
             
             yield return null;
-        } while (currentTime <= time);
+        } while (currentTime <= time && objectShot.gameObject != null );
 
         
     }
