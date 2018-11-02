@@ -6,13 +6,14 @@ public class EnemyShot : MonoBehaviour
 {
 
     public float bulletSpeed = 20f;
-
+    public bool used;
     public Rigidbody2D rb;
     GravityGun gravityGun;
 
     // Use this for initialization
     void Start()
     {
+        used = false;
         gravityGun = GameObject.FindGameObjectWithTag("Player").GetComponent<GravityGun>();
     }
     public void Shoot()
