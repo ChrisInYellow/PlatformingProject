@@ -32,6 +32,20 @@ public class GravityGun : MonoBehaviour
     
     public bool shrinking;
     JumpPad jumpPad;
+    CameraController cam; 
+
+
+    private void Awake()
+    {
+        if(FindObjectOfType<CameraController>() != null)
+        {
+            cam = FindObjectOfType<CameraController>(); 
+        }
+        else
+        {
+            return; 
+        }
+    }
 
     void Start()
     {
@@ -104,7 +118,11 @@ public class GravityGun : MonoBehaviour
             items.Remove(items[items.Count - 1]);
             Debug.Log("Removed");
         
-        
+        if(cam != null)
+        {
+            var player = GameObject.FindGameObjectWithTag("Player");
+            cam.Shake((transform.position - player.transform.position).normalized); 
+        }
         
     }
 
