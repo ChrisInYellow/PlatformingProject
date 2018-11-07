@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4468604841217660}
   - component: {fileID: 212988542504072618}
+  - component: {fileID: 95131598846625542}
   m_Layer: 0
   m_Name: Player_vaccumgun_sprite (1)
   m_TagString: Untagged
@@ -176,6 +177,7 @@ GameObject:
   - component: {fileID: 50029055837699076}
   - component: {fileID: 61223412081203290}
   - component: {fileID: 251096081202911150}
+  - component: {fileID: 58696823333793580}
   m_Layer: 0
   m_Name: Player_new
   m_TagString: Player
@@ -240,7 +242,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1724540796860352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.056, y: 1.1516275, z: -0.09}
+  m_LocalPosition: {x: -6.2417216, y: -0.8407442, z: -0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4976738376802442}
@@ -496,8 +498,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61223412081203290
-BoxCollider2D:
+--- !u!58 &58696823333793580
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -506,9 +508,24 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.019799769, y: 0.01485002}
+  serializedVersion: 2
+  m_Radius: 0.29524988
+--- !u!61 &61223412081203290
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1724540796860352}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.023332357}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -519,7 +536,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.37, y: 0.64}
+  m_Size: {x: 0.37, y: 0.5933353}
   m_EdgeRadius: 0
 --- !u!61 &61510392002323544
 BoxCollider2D:
@@ -571,6 +588,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.31, y: 0.49}
   m_EdgeRadius: 0
+--- !u!95 &95131598846625542
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1047455507138550}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5e306db31161364185f73adcf4cca7a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114163532044619850
 MonoBehaviour:
   m_ObjectHideFlags: 1
