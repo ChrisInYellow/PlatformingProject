@@ -7,6 +7,7 @@ public class EnemyCollisionManager : MonoBehaviour {
     public int enemyHealth;
     public GameObject[] EnemyHealthLevels;
     public GameObject bloodSplatter;
+    private bool dead; 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -22,23 +23,24 @@ public class EnemyCollisionManager : MonoBehaviour {
     { 
         if (enemyHealth<=0)
         {
+            this.dead = true; 
             GameObject splatter = Instantiate(bloodSplatter, transform.position, Quaternion.identity);
-            
-            if(!splatter.GetComponent<ParticleSystem>().isPlaying)
-            {
-                StartCoroutine(PlayParticles(splatter.GetComponent<ParticleSystem>()));
-                splatter.SetActive(false); 
-            }
-            gameObject.SetActive(false); 
+            ParticleSystem particleSystem = splatter.GetComponent<ParticleSystem>();
+
+            StartCoroutine(HandleDamage(splatter, 0.55f));
+
         }
     }
 
-    public IEnumerator PlayParticles(ParticleSystem blood)
+    public IEnumerator HandleDamage(GameObject splatter, float time)
     {
-        Debug.Log("Playing...");
-        blood.Play();
-        yield return blood.main.duration;
-
-        //yield return null; 
+        yield return new WaitForSeconds(0.65f);
+        Debug.Log("Coroutine activated");
+        splatter.SetActive(false);
+        yield return new WaitForEndOfFrame();
+        if(this.dead == true)
+            {
+                gameObject.SetActive(false);
+            }
     }
 }

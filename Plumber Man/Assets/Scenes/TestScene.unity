@@ -446,6 +446,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d17f6741c97d4db4aaa72fd4d3e14bca, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &154212419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1410843224742238, guid: bc5d8fe50b89fdc44bcc6bf977bf712a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1349258277}
 --- !u!1001 &178162189
 Prefab:
   m_ObjectHideFlags: 0
@@ -3438,6 +3443,19 @@ Prefab:
     - target: {fileID: 1519281321776732, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114592419986094362, guid: 82eacea3c24912140a7abe56dd6d3a81,
+        type: 2}
+      propertyPath: bloodSplatter
+      value: 
+      objectReference: {fileID: 154212419}
+    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
