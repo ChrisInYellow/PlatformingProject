@@ -24,9 +24,11 @@ GameObject:
   - component: {fileID: 61532336167617616}
   - component: {fileID: 50093574144318170}
   - component: {fileID: 114269706763681196}
+  - component: {fileID: 114592419986094362}
+  - component: {fileID: 114638801974072426}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519281321776732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.88, y: 0.8575964, z: 0}
+  m_LocalPosition: {x: -10.114, y: 4.985, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,7 +110,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519281321776732}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64bb0b2fd8caa7d43a2999d786f94449, type: 3}
   m_Name: 
@@ -117,6 +119,34 @@ MonoBehaviour:
   needsFlipping: 0
   speed: 1
   distance: 1
+--- !u!114 &114592419986094362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519281321776732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6335ad98cb27e35428fa542685d6460d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHealth: 1
+  EnemyHealthLevels: []
+  blood: {fileID: 198123104774225228, guid: bc5d8fe50b89fdc44bcc6bf977bf712a, type: 2}
+--- !u!114 &114638801974072426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519281321776732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169f812681776a34ab25c3895a7b4801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpeed: 20
+  used: 0
+  rb: {fileID: 50093574144318170}
 --- !u!212 &212616945784622896
 SpriteRenderer:
   m_ObjectHideFlags: 1
