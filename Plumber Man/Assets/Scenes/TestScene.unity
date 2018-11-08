@@ -3440,22 +3440,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 55
       objectReference: {fileID: 0}
+    - target: {fileID: 114592419986094362, guid: 82eacea3c24912140a7abe56dd6d3a81,
+        type: 2}
+      propertyPath: bloodSplatter
+      value: 
+      objectReference: {fileID: 154212419}
     - target: {fileID: 1519281321776732, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 114592419986094362, guid: 82eacea3c24912140a7abe56dd6d3a81,
         type: 2}
-      propertyPath: bloodSplatter
-      value: 
-      objectReference: {fileID: 154212419}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
+      propertyPath: enemyHealth
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
@@ -3735,7 +3732,7 @@ Prefab:
     - target: {fileID: 198123104774225228, guid: bc5d8fe50b89fdc44bcc6bf977bf712a,
         type: 2}
       propertyPath: InitialModule.startSpeed.scalar
-      value: 1.68
+      value: 1.85
       objectReference: {fileID: 0}
     - target: {fileID: 198123104774225228, guid: bc5d8fe50b89fdc44bcc6bf977bf712a,
         type: 2}
@@ -4534,7 +4531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 1
-  EnemyHealthLevels: []
+  targetScale: {x: 0, y: 0, z: 0}
   bloodSplatter: {fileID: 0}
 --- !u!1001 &1793273209
 Prefab:
