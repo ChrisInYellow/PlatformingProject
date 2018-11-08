@@ -13,8 +13,8 @@ public class GravityGun : MonoBehaviour
     public float shrinkSpeed = 0.1f;
     
     public SpriteRenderer sprite;
-   
-    
+
+    public BoxCollider2D playerCollider;
     public Vector3 targetScale = new Vector3(1.2f, 1.2f, 1.2f);
     public bool smallObjectInTrigger;
     
@@ -94,8 +94,10 @@ public class GravityGun : MonoBehaviour
         
         
         objectShot.SetActive(true);
-        objectShot.GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
+        Physics2D.IgnoreCollision(objectShot.GetComponent<Collider2D>(), playerCollider);
         
+        items[items.Count - 1].transform.parent = null;
+        //objectShot.transform.localScale = new Vector3(1, 1, 1);
         objectShot.GetComponent<BoxCollider2D>().isTrigger = false;
         objectShot.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         if (objectShot.tag == "SmallObject")
@@ -110,13 +112,13 @@ public class GravityGun : MonoBehaviour
         
         
 
-        Debug.Log("Instantiated");
-            items[items.Count - 1].transform.parent = null;
-            StartCoroutine(ScaleOverTime(0.5f, objectShot));
+        //Debug.Log("Instantiated");
+        
+        StartCoroutine(ScaleOverTime(0.2f, objectShot));
             
 
-            items.Remove(items[items.Count - 1]);
-            Debug.Log("Removed");
+        items.Remove(items[items.Count - 1]);
+        //    Debug.Log("Removed");
         
         if(cam != null)
         {
@@ -223,8 +225,10 @@ public class GravityGun : MonoBehaviour
         pull.transform.parent = gun.transform;
         pull.transform.rotation = transform.parent.rotation;
         pull.SetActive(false);
+        
         PullOBJ.Remove(pull);
         smallObjectInTrigger = false;
+        ShootObject();
     }
 
 }

@@ -20,25 +20,26 @@ public class ItemShot : MonoBehaviour
         Debug.Log("Toto");
         GetComponent<BoxCollider2D>().enabled = true;
         
-        GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
+        //GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
         rb.velocity = transform.right * bulletSpeed;
     }
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
 
-        if (col.gameObject.tag == "Wall")
+        if (col.gameObject.tag == "Ground")
         {
             //rb.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             //rb.velocity = Vector2.zero;
             rb.isKinematic = true;
             Debug.Log("Heyooooo");
             rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-            StartCoroutine(WaitKinematic());
+            //StartCoroutine(WaitKinematic());
             //rb.transform.localRotation = Quaternion.Euler(0, 0, 0);
             rb.transform.localRotation = Quaternion.identity;
             rb.velocity = Vector2.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
-        if (col.gameObject.tag == "Ground")
+        if (col.gameObject.tag == "Wall")
         {
             rb.velocity = Vector2.zero;
             Debug.Log("Kine1111");
