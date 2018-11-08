@@ -24,10 +24,11 @@ public class EnemyShot : MonoBehaviour
         GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
         rb.velocity = transform.right * bulletSpeed;
     }
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Ground" || col.gameObject.tag == "Wall" || col.gameObject.tag == "SmallObject")
+        if (col.gameObject.tag == "Ground" && used == true || col.gameObject.tag == "Wall" && used == true || col.gameObject.tag == "SmallObject" && used == true)
         {
+            Debug.Log("Destroooyed");
             Destroy(gameObject);
         }
         
