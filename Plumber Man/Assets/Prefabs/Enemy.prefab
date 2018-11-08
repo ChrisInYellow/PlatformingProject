@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114269706763681196}
   - component: {fileID: 114592419986094362}
   - component: {fileID: 114638801974072426}
+  - component: {fileID: 95728737617056412}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -91,6 +92,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6221876, y: 0.3799995}
   m_EdgeRadius: 0
+--- !u!95 &95728737617056412
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519281321776732}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4b1a27a6f7df2e46945dbb643ac99c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114169826964905832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: 1
   EnemyHealthLevels: []
-  blood: {fileID: 198123104774225228, guid: bc5d8fe50b89fdc44bcc6bf977bf712a, type: 2}
+  bloodSplatter: {fileID: 0}
 --- !u!114 &114638801974072426
 MonoBehaviour:
   m_ObjectHideFlags: 1

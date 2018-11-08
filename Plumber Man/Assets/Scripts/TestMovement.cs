@@ -80,7 +80,7 @@ public class TestMovement : MonoBehaviour
     {
         if (target.tag == "Ground")
         {
-            Debug.Log("Ground");
+           // Debug.Log("Ground");
             grounded = true;
         }
 
