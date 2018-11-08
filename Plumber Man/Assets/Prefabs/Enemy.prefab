@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519281321776732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.114, y: 4.985, z: 0}
+  m_LocalPosition: {x: -11.6488285, y: 4.77607, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519281321776732}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64bb0b2fd8caa7d43a2999d786f94449, type: 3}
   m_Name: 
@@ -150,8 +150,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHealth: 1
-  EnemyHealthLevels: []
-  bloodSplatter: {fileID: 0}
+  enemyKnockback: 0
+  targetScale: {x: 0, y: 0, z: 0}
+  bloodSplatter: {fileID: 1410843224742238, guid: bc5d8fe50b89fdc44bcc6bf977bf712a,
+    type: 2}
 --- !u!114 &114638801974072426
 MonoBehaviour:
   m_ObjectHideFlags: 1
