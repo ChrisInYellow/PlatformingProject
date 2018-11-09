@@ -2188,11 +2188,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36fb32e2710cfdd4b8ce1ac6f3f35afb, type: 2}
   m_IsPrefabAsset: 0
---- !u!4 &759522191 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4008024479490054, guid: 3337bc253a0b9514dbc737e5e72e61d7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1304333370}
 --- !u!1001 &773746790
 Prefab:
   m_ObjectHideFlags: 0
@@ -3580,36 +3575,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 61223412081203290, guid: 3337bc253a0b9514dbc737e5e72e61d7,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.0145300925
-      objectReference: {fileID: 0}
-    - target: {fileID: 61223412081203290, guid: 3337bc253a0b9514dbc737e5e72e61d7,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 0.5176104
-      objectReference: {fileID: 0}
-    - target: {fileID: 58696823333793580, guid: 3337bc253a0b9514dbc737e5e72e61d7,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: 0.046402127
-      objectReference: {fileID: 0}
-    - target: {fileID: 58696823333793580, guid: 3337bc253a0b9514dbc737e5e72e61d7,
-        type: 2}
-      propertyPath: m_Radius
-      value: 0.26369777
-      objectReference: {fileID: 0}
-    - target: {fileID: 114163532044619850, guid: 3337bc253a0b9514dbc737e5e72e61d7,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61223412081203290, guid: 3337bc253a0b9514dbc737e5e72e61d7,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3337bc253a0b9514dbc737e5e72e61d7, type: 2}
   m_IsPrefabAsset: 0
@@ -3802,81 +3767,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc5d8fe50b89fdc44bcc6bf977bf712a, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1363539983
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1363539984}
-  - component: {fileID: 1363539986}
-  - component: {fileID: 1363539985}
-  m_Layer: 0
-  m_Name: Groundchecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1363539984
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1363539983}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.078, y: -0.498, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 759522191}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1363539985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1363539983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 893080f08338256469a77b3b61471bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  jumpHeight: 15
-  groundCheck: {fileID: 0}
-  groundCheckRadius: 0
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 16
-  grounded: 0
-  sprite: {fileID: 0}
---- !u!61 &1363539986
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1363539983}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.02199459, y: 0.2517147}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.26685143, y: 0.051794052}
-  m_EdgeRadius: 0
 --- !u!1001 &1370144170
 Prefab:
   m_ObjectHideFlags: 0
