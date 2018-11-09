@@ -3361,75 +3361,45 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+    - target: {fileID: 4635502121278074, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.693
+      value: -17.02
       objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+    - target: {fileID: 4635502121278074, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.406
+      value: 5.54
       objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+    - target: {fileID: 4635502121278074, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+    - target: {fileID: 4635502121278074, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+    - target: {fileID: 4635502121278074, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+    - target: {fileID: 4635502121278074, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+    - target: {fileID: 4635502121278074, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+    - target: {fileID: 4635502121278074, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
       propertyPath: m_RootOrder
       value: 53
       objectReference: {fileID: 0}
-    - target: {fileID: 114592419986094362, guid: 82eacea3c24912140a7abe56dd6d3a81,
+    - target: {fileID: 114873827204476584, guid: c1bda1fcc8ed3f2458115cafd377d94d,
         type: 2}
       propertyPath: bloodSplatter
       value: 
       objectReference: {fileID: 154212419}
-    - target: {fileID: 1519281321776732, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
-      propertyPath: m_Name
-      value: Enemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114592419986094362, guid: 82eacea3c24912140a7abe56dd6d3a81,
-        type: 2}
-      propertyPath: enemyHealth
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2.314
-      objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2.314
-      objectReference: {fileID: 0}
-    - target: {fileID: 4203713395298180, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.314
-      objectReference: {fileID: 0}
-    - target: {fileID: 114592419986094362, guid: 82eacea3c24912140a7abe56dd6d3a81,
-        type: 2}
-      propertyPath: enemyKnockback
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1519281321776732, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
+  m_SourcePrefab: {fileID: 100100000, guid: c1bda1fcc8ed3f2458115cafd377d94d, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1230675738
 Prefab:
