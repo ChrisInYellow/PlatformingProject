@@ -76,9 +76,9 @@ public class TestMovement : MonoBehaviour
 
     }
 
-    void OnTriggerStay2D(Collider2D target)
+    void OnCollisionStay2D(Collision2D target)
     {
-        if (target.tag == "Ground")
+        if (target.gameObject.tag == "Ground")
         {
            // Debug.Log("Ground");
             grounded = true;

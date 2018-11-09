@@ -200,7 +200,7 @@ public class GravityGun : MonoBehaviour
             yield return null;
         } while (currentTime <= time && objectShot.gameObject != null );
 
-        
+        Physics2D.IgnoreCollision(objectShot.GetComponent<Collider2D>(), playerCollider, false);
     }
     IEnumerator ShrinkOverTime(float time, GameObject pull)
     {
