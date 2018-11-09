@@ -9,11 +9,12 @@ public class ItemShot : MonoBehaviour
 
     public Rigidbody2D rb;
     GravityGun gravityGun;
-
+    TestMovement movement;
     // Use this for initialization
     void Start()
     {
         gravityGun = GameObject.FindGameObjectWithTag("Player").GetComponent<GravityGun>();
+        movement = GameObject.FindGameObjectWithTag("Feet").GetComponent<TestMovement>();
     }
     public void Shoot()
     {
@@ -34,8 +35,16 @@ public class ItemShot : MonoBehaviour
             Debug.Log("Heyooooo");
             rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             //StartCoroutine(WaitKinematic());
-            //rb.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            rb.transform.localRotation = Quaternion.identity;
+            if (movement.sprite.flipX == true)
+            {
+                rb.transform.localRotation = Quaternion.Euler(0, 0, 180);
+            }
+            else
+            {
+                rb.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+            
+            //rb.transform.localRotation = Quaternion.identity;
             rb.velocity = Vector2.zero;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
