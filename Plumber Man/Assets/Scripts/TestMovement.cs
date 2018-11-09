@@ -18,7 +18,7 @@ public class TestMovement : MonoBehaviour
     void Start()
     {
         
-        sprite = GetComponent<SpriteRenderer>();
+        
     }
 
     void fixedUpdate()
