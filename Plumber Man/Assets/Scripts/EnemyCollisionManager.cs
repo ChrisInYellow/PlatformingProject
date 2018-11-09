@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemyCollisionManager : MonoBehaviour {
 
     public int enemyHealth;
+    public float enemyKnockback;
     public Vector3 targetScale; 
     public GameObject bloodSplatter;
 
     private bool dead;
     private Animator anim;
+    private Vector2 knockbackDir;
 
     private void Awake()
     {
@@ -23,6 +25,14 @@ public class EnemyCollisionManager : MonoBehaviour {
             enemyHealth -= 1;
             anim.SetBool("Hit", true); 
             EnemyHealthCheck();
+        }
+
+        if(collision.gameObject.GetComponent<JumpPad>() != null)
+        {
+            knockbackDir = new Vector2(collision.gameObject.transform.position.x - transform.position.x,
+                collision.collider.transform.position.y - transform.position.y) * enemyKnockback;
+
+            gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDir, ForceMode2D.Impulse);
         }
     }
 
@@ -44,9 +54,7 @@ public class EnemyCollisionManager : MonoBehaviour {
 
     public IEnumerator HandleDamage(GameObject splatter, float time)
     {
-       /* yield return new WaitForSeconds(0.095f);
-        anim.SetBool("Hit", false);*/
-        
+
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("Hit", false);
         Debug.Log("Coroutine activated");
