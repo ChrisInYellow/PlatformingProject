@@ -25,7 +25,7 @@ public class EnemyShot : MonoBehaviour
         GetComponent<EnemyCollisionManager>().enabled = false; 
         rb.velocity = transform.right * bulletSpeed;
     }
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("Should not happen!");
 
