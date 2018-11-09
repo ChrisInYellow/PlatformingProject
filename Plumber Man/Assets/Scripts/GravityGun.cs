@@ -228,7 +228,7 @@ public class GravityGun : MonoBehaviour
         
         PullOBJ.Remove(pull);
         smallObjectInTrigger = false;
-        ShootObject();
+        
     }
 
 }
