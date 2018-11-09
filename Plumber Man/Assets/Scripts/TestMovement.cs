@@ -12,7 +12,7 @@ public class TestMovement : MonoBehaviour
     public LayerMask whatIsGround;
     public bool grounded;
     public SpriteRenderer sprite;
-    
+    public Rigidbody2D rb;
 
     // Use this for initialization
     void Start()
@@ -38,7 +38,7 @@ public class TestMovement : MonoBehaviour
         {
             if (grounded == true)
             {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
                 
                 StartCoroutine(Jump());
             }
@@ -49,7 +49,7 @@ public class TestMovement : MonoBehaviour
         {
 
 
-            GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+           rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
             
             sprite.flipX = false;
 
@@ -63,7 +63,7 @@ public class TestMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
             
             sprite.flipX = true;
             
@@ -76,7 +76,7 @@ public class TestMovement : MonoBehaviour
 
     }
 
-    void OnTriggerStay2D(Collider2D target)
+    void OnTriggerEnter2D(Collider2D target)
     {
         if (target.gameObject.tag == "Ground")
         {
