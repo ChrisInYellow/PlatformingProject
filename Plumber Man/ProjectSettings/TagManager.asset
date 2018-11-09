@@ -12,6 +12,7 @@ TagManager:
   - Floor
   - JumpPad
   - Enemy
+  - Feet
   layers:
   - Default
   - TransparentFX
