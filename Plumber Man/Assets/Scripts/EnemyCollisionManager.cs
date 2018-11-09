@@ -15,13 +15,18 @@ public class EnemyCollisionManager : MonoBehaviour {
 
     private void Awake()
     {
+    }
+    void Start()
+    {
         anim = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.GetComponent<EnemyShot>() != null)
         {
+            collision.gameObject.GetComponent<EnemyCollisionManager>().enabled = false; 
+            print("Collided,yo!"); 
             enemyHealth -= 1;
             anim.SetBool("Hit", true); 
             EnemyHealthCheck();
@@ -36,8 +41,9 @@ public class EnemyCollisionManager : MonoBehaviour {
         }
     }
 
-    private void EnemyHealthCheck()
-    { 
+    public void EnemyHealthCheck()
+    {
+        Debug.Log("Hej");
         GameObject splatter = Instantiate(bloodSplatter, transform.position, Quaternion.identity);
         ParticleSystem particleSystem = splatter.GetComponent<ParticleSystem>();
         if (enemyHealth<=0)
@@ -57,8 +63,8 @@ public class EnemyCollisionManager : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("Hit", false);
-        Debug.Log("Coroutine activated");
         splatter.SetActive(false);
+        Debug.Log("Coroutine activated");
 
         yield return new WaitForEndOfFrame();
         if(this.dead == true)
