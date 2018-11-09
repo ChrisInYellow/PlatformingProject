@@ -76,7 +76,7 @@ public class TestMovement : MonoBehaviour
 
     }
 
-    void OnCollisionStay2D(Collision2D target)
+    void OnTriggerStay2D(Collider2D target)
     {
         if (target.gameObject.tag == "Ground")
         {
