@@ -242,7 +242,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1724540796860352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.2417216, y: -0.8407442, z: -0.09}
+  m_LocalPosition: {x: -5.37, y: -4.89, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4976738376802442}
@@ -645,6 +645,7 @@ MonoBehaviour:
   system5: {fileID: 198762134603817020}
   shrinkSpeed: 1
   sprite: {fileID: 0}
+  playerCollider: {fileID: 0}
   targetScale: {x: 0.1, y: 0.1, z: 0.1}
   smallObjectInTrigger: 0
   PullOBJ: []
