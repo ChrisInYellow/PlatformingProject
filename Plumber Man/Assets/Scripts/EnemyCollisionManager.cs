@@ -26,7 +26,6 @@ public class EnemyCollisionManager : MonoBehaviour {
         if(collision.gameObject.GetComponent<EnemyShot>() != null)
         {
             collision.gameObject.GetComponent<EnemyCollisionManager>().enabled = false; 
-            print("Collided,yo!"); 
             enemyHealth -= 1;
             anim.SetBool("Hit", true); 
             EnemyHealthCheck();
@@ -43,7 +42,6 @@ public class EnemyCollisionManager : MonoBehaviour {
 
     public void EnemyHealthCheck()
     {
-        Debug.Log("Hej");
         GameObject splatter = Instantiate(bloodSplatter, transform.position, Quaternion.identity);
         ParticleSystem particleSystem = splatter.GetComponent<ParticleSystem>();
         if (enemyHealth<=0)
