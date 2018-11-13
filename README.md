@@ -1,2 +1,2 @@
 # PlatformingProject
-Procedural platforming game made as final project on Yrgo.
+Platforming game made as final project on Yrgo.
