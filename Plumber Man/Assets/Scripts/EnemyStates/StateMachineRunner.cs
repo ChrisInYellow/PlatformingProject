@@ -85,6 +85,11 @@ namespace EnemyStates.StateMachine
 
         }
 
+        public static void DoNothingTrigger(Collider2D other)
+        {
+
+        }
+
         public static IEnumerator DoNothingCoroutine()
         {
             yield break; 
@@ -107,7 +112,8 @@ namespace EnemyStates.StateMachine
         public Action Update = StateMachineRunner.DoNothing;
         public Action LateUpdate = StateMachineRunner.DoNothing;
         public Action FixedUpdate = StateMachineRunner.DoNothing;
-        public Action<Collision2D> OnCollisionEnter = StateMachineRunner.DoNothingCollision; 
+        public Action<Collision2D> OnCollisionEnter = StateMachineRunner.DoNothingCollision;
+        public Action<Collider2D> OnTriggerEnter = StateMachineRunner.DoNothingTrigger; 
 
         public StateMapping(object state)
         {

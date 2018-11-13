@@ -16,6 +16,8 @@ public class EnemyFSM : IEnemyStates {
     private float minX; 
     private StateMachine<States> fsm;
     private SpriteRenderer sprite;
+    private bool foundPlayer;
+    private GameObject player; 
 
     private void Awake()
     {
@@ -41,11 +43,31 @@ public class EnemyFSM : IEnemyStates {
 
     private void Patrol_Update()
     {
-        Vector3 newPos = new Vector3();
-        newPos.x += speed * Time.deltaTime;
-        transform.position = movingRight ? transform.position + newPos : transform.position - newPos;
+        if(foundPlayer)
+        {
+            fsm.ChangeState(States.Hunt, StateTransition.Overwrite); 
+        }
+        else
+        {
+            Vector3 newPos = new Vector3();
+            newPos.x += speed * Time.deltaTime;
+            transform.position = movingRight ? transform.position + newPos : transform.position - newPos;
 
-        CheckEndofPath();
+            CheckEndofPath();
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, )
+        }
+    }
+
+    private void Hunt_Enter()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 playerPos = player.transform.position; 
+    }
+
+    private void Hunt_Update()
+    {
+        //playerPos.x 
     }
 
     void CheckEndofPath()

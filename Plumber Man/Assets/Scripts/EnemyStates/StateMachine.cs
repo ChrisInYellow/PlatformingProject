@@ -138,6 +138,9 @@ namespace EnemyStates.StateMachine
                     case "OnCollisionEnter":
                         targetState.OnCollisionEnter = CreateDelegate<Action<Collision2D>>(functions[i], component);
                         break;
+                    case "OnTriggerEnter":
+                        targetState.OnTriggerEnter = CreateDelegate<Action<Collider2D>>(functions[i], component);
+                        break;
                 }
             }
             //Create nil State Mapping
