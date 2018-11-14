@@ -23,10 +23,10 @@ GameObject:
   - component: {fileID: 114169826964905832}
   - component: {fileID: 61532336167617616}
   - component: {fileID: 50093574144318170}
-  - component: {fileID: 114269706763681196}
   - component: {fileID: 114592419986094362}
   - component: {fileID: 114638801974072426}
   - component: {fileID: 95728737617056412}
+  - component: {fileID: 114887186682824290}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1519281321776732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.6488285, y: 4.77607, z: 0}
+  m_LocalPosition: {x: -11.87, y: 6.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -123,21 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   recoil: 20
---- !u!114 &114269706763681196
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1519281321776732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64bb0b2fd8caa7d43a2999d786f94449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movingRight: 1
-  needsFlipping: 0
-  speed: 1
-  distance: 1
 --- !u!114 &114592419986094362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,6 +153,21 @@ MonoBehaviour:
   bulletSpeed: 20
   used: 0
   rb: {fileID: 50093574144318170}
+--- !u!114 &114887186682824290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1519281321776732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bc43d89fa226644a761c575a56e732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingRight: 1
+  requiresFlipping: 0
+  speed: 1
+  distance: 1
 --- !u!212 &212616945784622896
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3617,19 +3617,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 54
       objectReference: {fileID: 0}
-    - target: {fileID: 114269706763681196, guid: 82eacea3c24912140a7abe56dd6d3a81,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1519281321776732, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
       propertyPath: m_Name
       value: Enemy (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114592419986094362, guid: 82eacea3c24912140a7abe56dd6d3a81,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
