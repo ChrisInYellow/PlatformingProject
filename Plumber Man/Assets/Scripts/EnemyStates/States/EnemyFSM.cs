@@ -9,11 +9,12 @@ public class EnemyFSM : IEnemyStates {
     public bool requiresFlipping = false;
     public float speed;
     public float distance; 
+    public float huntingDuration; 
 
     private Vector2 currentTargetPosition;
     private int pathIndex = 0;
     private float maxX;
-    private float minX; 
+    private float minX;
     private StateMachine<States> fsm;
     private SpriteRenderer sprite;
     private bool foundPlayer;
@@ -55,19 +56,25 @@ public class EnemyFSM : IEnemyStates {
 
             CheckEndofPath();
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, )
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, sprite.transform.forward);
+            
+
+           /* if(hit.collider.tag == "Player")
+            {
+                foundPlayer = true; 
+            }*/
         }
     }
 
-    private void Hunt_Enter()
+    private IEnumerator Hunt_Enter()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 playerPos = player.transform.position; 
-    }
-
-    private void Hunt_Update()
-    {
-        //playerPos.x 
+        Vector3 playerPos = player.transform.position;
+        foundPlayer = false; 
+        yield return null;
+        transform.position = movingRight ? transform.position + playerPos : transform.position - playerPos;
+        yield return new WaitForSeconds(huntingDuration);
+        fsm.ChangeState(States.Patrol, StateTransition.Safe); 
     }
 
     void CheckEndofPath()
