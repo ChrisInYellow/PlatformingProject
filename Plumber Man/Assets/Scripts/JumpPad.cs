@@ -2,26 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpPad : MonoBehaviour {
+public class JumpPad : MonoBehaviour
+{
+    public Rigidbody2D rb;
+    public int speed;
 
-    public float propulsionForce; 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        print(other.tag + " has been triggered."); 
-        if(other.tag == "Player")
+            
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Feet"))
         {
-            other.GetComponent<Rigidbody2D>().AddForce(new Vector2
-                (other.transform.position.x, propulsionForce), ForceMode2D.Impulse);
+            rb.velocity = new Vector2(rb.velocity.x, speed);
         }
     }
 }

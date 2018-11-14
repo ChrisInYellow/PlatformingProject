@@ -1468,6 +1468,11 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!212 &650613895 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 212988542504072618, guid: 3337bc253a0b9514dbc737e5e72e61d7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1058230491}
 --- !u!1 &653018599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,6 +2348,15 @@ Prefab:
       propertyPath: m_Name
       value: Player_new (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4008024479490054, guid: 3337bc253a0b9514dbc737e5e72e61d7, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114803378230502032, guid: 3337bc253a0b9514dbc737e5e72e61d7,
+        type: 2}
+      propertyPath: gunSprite
+      value: 
+      objectReference: {fileID: 650613895}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3337bc253a0b9514dbc737e5e72e61d7, type: 2}
   m_IsPrefabAsset: 0

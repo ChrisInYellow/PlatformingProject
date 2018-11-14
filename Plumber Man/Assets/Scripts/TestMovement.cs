@@ -13,7 +13,7 @@ public class TestMovement : MonoBehaviour
     public bool grounded;
     public SpriteRenderer sprite;
     public Rigidbody2D rb;
-
+    public SpriteRenderer gunSprite;
     // Use this for initialization
     void Start()
     {
@@ -51,7 +51,7 @@ public class TestMovement : MonoBehaviour
 
            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
             
-            sprite.flipX = false;
+            //sprite.flipX = false;
 
         }
         else
@@ -65,7 +65,7 @@ public class TestMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
             
-            sprite.flipX = true;
+            //sprite.flipX = true;
             
         }
         else
