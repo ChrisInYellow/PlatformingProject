@@ -20,11 +20,12 @@ public class Trap : MonoBehaviour {
             playerHealth.health -= damage;
 
             knockbackDir = new Vector2(collision.gameObject.transform.position.x - transform.position.x,
-                collision.collider.transform.position.y - transform.position.y) * recoil;
+                collision.gameObject.transform.position.y - transform.position.y) * recoil;
 
             print(knockbackDir);
 
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDir, ForceMode2D.Impulse);
+            Debug.Log(recoil);
         }
     }
 

@@ -73,8 +73,8 @@ public class EnemyCollisionManager : MonoBehaviour {
         }
         else
         {
-            Vector3 newScale = transform.localScale * 0.75f;
-            gameObject.transform.localScale = newScale;
+            //Vector3 newScale = transform.localScale * 0.75f;
+            //gameObject.transform.localScale = newScale;
             yield return null; 
         }
     }

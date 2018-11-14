@@ -8,6 +8,7 @@ public class RotateGun : MonoBehaviour {
     public float speed = 5f;
     TestMovement movement;
     GameObject player;
+    public bool facingRight;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -19,6 +20,7 @@ public class RotateGun : MonoBehaviour {
         halfOfScreen = Screen.width / 2;
         if (xPos > halfOfScreen)
         {
+            facingRight = true;
             player.transform.localScale = new Vector3(1, 1, 1);
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
@@ -29,6 +31,7 @@ public class RotateGun : MonoBehaviour {
         }
         else
         {
+            facingRight = false;
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
             float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;

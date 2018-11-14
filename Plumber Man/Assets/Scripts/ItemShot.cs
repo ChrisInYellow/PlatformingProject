@@ -10,19 +10,28 @@ public class ItemShot : MonoBehaviour
     public Rigidbody2D rb;
     GravityGun gravityGun;
     TestMovement movement;
+    RotateGun rotateGun;
     // Use this for initialization
     void Start()
     {
         gravityGun = GameObject.FindGameObjectWithTag("Player").GetComponent<GravityGun>();
         movement = GameObject.FindGameObjectWithTag("Feet").GetComponent<TestMovement>();
+        rotateGun = GameObject.FindGameObjectWithTag("Gun").GetComponent<RotateGun>();
     }
     public void Shoot()
     {
         Debug.Log("Toto");
         GetComponent<BoxCollider2D>().enabled = true;
-        
+
         //GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
-        rb.velocity = transform.right * bulletSpeed;
+        if (rotateGun.facingRight)
+        {
+            rb.velocity = transform.right * bulletSpeed;
+        }
+        else if (!rotateGun.facingRight)
+        {
+            rb.velocity = transform.right * bulletSpeed * -1;
+        }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
