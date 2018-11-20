@@ -38,7 +38,7 @@ public class EnemyShot : MonoBehaviour
     {
         Debug.Log("Should not happen!");
 
-        if (col.gameObject.tag == "Ground" && used == true || col.gameObject.tag == "Wall" && used == true || col.gameObject.tag == "SmallObject" && used == true || col.gameObject.tag == "Enemy" && used == true)
+        if (col.gameObject.tag == "Ground" && used == true || col.gameObject.tag == "Wall" && used == true || col.gameObject.tag == "LargeObject" && used == true || col.gameObject.tag == "Enemy" && used == true)
         {
             Debug.Log("Destroooyed");
             Destroy(gameObject);
