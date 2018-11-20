@@ -18,6 +18,8 @@ public class Trap : MonoBehaviour {
         if (collision.collider.tag == "Player")
         {
             playerHealth.health -= damage;
+            var playerMovement = FindObjectOfType<TestMovement>();
+            playerMovement.knockedBack = true; 
 
             knockbackDir = new Vector2(collision.gameObject.transform.position.x - transform.position.x,
                 collision.gameObject.transform.position.y - transform.position.y) * recoil;

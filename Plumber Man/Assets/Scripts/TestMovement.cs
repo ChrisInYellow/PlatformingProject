@@ -6,6 +6,7 @@ public class TestMovement : MonoBehaviour
 
     public float moveSpeed;
     public float jumpHeight;
+    public float knockbackTime; 
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -14,6 +15,8 @@ public class TestMovement : MonoBehaviour
     public SpriteRenderer sprite;
     public Rigidbody2D rb;
     public SpriteRenderer gunSprite;
+
+    public bool knockedBack; 
     // Use this for initialization
     void Start()
     {
@@ -25,7 +28,8 @@ public class TestMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.W))
+        if(!knockedBack)
+        {
         if (Input.GetButtonDown("Jump"))
         {
             if (grounded == true)
@@ -44,6 +48,13 @@ public class TestMovement : MonoBehaviour
             x *= 0.8f;
         }
         rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
+
+        }
+        else
+        {
+            StartCoroutine("Knockback", knockbackTime); 
+        }
+        //if (Input.GetKeyDown(KeyCode.W))
 
         //if (Input.GetKey(KeyCode.D))
         //{
@@ -88,5 +99,11 @@ public class TestMovement : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
+    }
+
+    IEnumerator Knockback(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        knockedBack = false; 
     }
 }
