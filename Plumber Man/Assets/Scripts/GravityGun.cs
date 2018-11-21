@@ -153,6 +153,10 @@ public class GravityGun : MonoBehaviour
                 {
                     Destroy(pull.GetComponent<Trap>());
                 }
+                else if (pull.gameObject.tag == "SmallObject")
+                {
+                    pull.GetComponent<JumpPad>().enabled = false;
+                }
                 pull.GetComponent<BoxCollider2D>().isTrigger = true;
                 StartCoroutine(ShrinkOverTime(0.3f, pull));
 
@@ -199,11 +203,16 @@ public class GravityGun : MonoBehaviour
             
             yield return null;
         } while (currentTime <= time && objectShot.gameObject != null );
+
+        if (objectShot.gameObject.tag == "SmallObject")
+        {
+            objectShot.GetComponent<JumpPad>().enabled = true;
+        }
         //if (objectShot.gameObject != null)
         //{
         //    Physics2D.IgnoreCollision(objectShot.GetComponent<Collider2D>(), playerCollider, false);
         //}
-        
+
     }
     IEnumerator ShrinkOverTime(float time, GameObject pull)
     {
