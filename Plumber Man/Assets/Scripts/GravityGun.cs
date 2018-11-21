@@ -203,10 +203,14 @@ public class GravityGun : MonoBehaviour
             
             yield return null;
         } while (currentTime <= time && objectShot.gameObject != null );
-
-        if (objectShot.gameObject.tag == "SmallObject")
+        if (objectShot != null)
         {
-            objectShot.GetComponent<JumpPad>().allowJump = true;
+
+
+            if (objectShot.gameObject.tag == "SmallObject")
+            {
+                objectShot.GetComponent<JumpPad>().allowJump = true;
+            }
         }
         //if (objectShot.gameObject != null)
         //{
