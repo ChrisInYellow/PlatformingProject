@@ -20,24 +20,29 @@ public class RotateGun : MonoBehaviour {
         halfOfScreen = Screen.width / 2;
         if (xPos > halfOfScreen)
         {
-            facingRight = true;
             player.transform.localScale = new Vector3(1, 1, 1);
+            facingRight = true;
+            
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
+            transform.rotation = rotation;
             Debug.Log("SCREEN");
+            Debug.Log(direction.x);
+            
         }
         else
         {
+            player.transform.localScale = new Vector3(-1, 1, 1);
             facingRight = false;
+            
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
             float angle = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
-            player.transform.localScale = new Vector3(-1, 1, 1);
+            transform.rotation = rotation;
+            
         }
         //if (transform.eulerAngles.z >= 270 && transform.eulerAngles.z <= 360 || transform.eulerAngles.z >= 0 && transform.eulerAngles.z <= 90)
         //{
