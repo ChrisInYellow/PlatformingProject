@@ -47,6 +47,7 @@ public class EnemyFSM : IEnemyStates {
         if(foundPlayer)
         {
             fsm.ChangeState(States.Hunt, StateTransition.Overwrite); 
+                Debug.Log("Hunting");
         }
         else
         {
@@ -56,10 +57,11 @@ public class EnemyFSM : IEnemyStates {
 
             CheckEndofPath();
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, sprite.transform.forward);
+          /*  RaycastHit2D hit = Physics2D.Raycast(transform.position, sprite.transform.forward);
+            Debug.DrawRay(hit.transform.position,sprite.transform.forward); */
             
 
-           /* if(hit.collider.tag == "Player")
+         /*  if(hit.collider.tag == "Player")
             {
                 foundPlayer = true; 
             }*/
@@ -72,6 +74,8 @@ public class EnemyFSM : IEnemyStates {
         Vector3 playerPos = player.transform.position;
         foundPlayer = false; 
         yield return null;
+        float huntSpeed = speed *2;
+        playerPos.x += huntSpeed * Time.deltaTime; 
         transform.position = movingRight ? transform.position + playerPos : transform.position - playerPos;
         yield return new WaitForSeconds(huntingDuration);
         fsm.ChangeState(States.Patrol, StateTransition.Safe); 

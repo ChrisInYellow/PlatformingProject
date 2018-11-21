@@ -3229,6 +3229,11 @@ Prefab:
       propertyPath: recoil
       value: 49.83
       objectReference: {fileID: 0}
+    - target: {fileID: 114887186682824290, guid: 82eacea3c24912140a7abe56dd6d3a81,
+        type: 2}
+      propertyPath: huntingDuration
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82eacea3c24912140a7abe56dd6d3a81, type: 2}
   m_IsPrefabAsset: 0
