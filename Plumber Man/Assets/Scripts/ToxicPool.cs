@@ -14,12 +14,12 @@ public class ToxicPool : MonoBehaviour
     {
         playerHealth = GameObject.FindWithTag("Player").GetComponent<HealthManager>();
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             //playerHealth.health -= damage;
-            //StartCoroutine(DamageOverTime());
+            StartCoroutine(DamageOverTime());
             //knockbackDir = new Vector2(collision.gameObject.transform.position.x - transform.position.x,
             //    collision.transform.position.y - transform.position.y) * recoil;
 
@@ -29,17 +29,19 @@ public class ToxicPool : MonoBehaviour
         }
     }
 
-    //IEnumerator DamageOverTime()
-    //{
-    //    playerHealth.health -= damage;
-    //    yield return new WaitForSeconds(1f);
-    //    playerHealth.health -= damage;
-    //    yield return new WaitForSeconds(1f);
-    //    playerHealth.health -= damage;
-    //    yield return null;
+    IEnumerator DamageOverTime()
+    {
+        playerHealth.health -= damage;
+        yield return new WaitForSeconds(1.5f);
+        playerHealth.health -= damage;
+        yield return new WaitForSeconds(1.5f);
+        playerHealth.health -= damage;
+        yield return new WaitForSeconds(1.5f);
+        playerHealth.health -= damage;
+        yield return null;
 
 
 
 
-    //}
+    }
 }

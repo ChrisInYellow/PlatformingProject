@@ -73,8 +73,13 @@ public class EnemyCollisionManager : MonoBehaviour {
         }
         else
         {
-            //Vector3 newScale = transform.localScale * 0.75f;
-            //gameObject.transform.localScale = newScale;
+            yield return new WaitForSeconds(0.1f);
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
+            Vector3 newScale = transform.localScale * 0.75f;
+            gameObject.transform.localScale = newScale;
+            yield return new WaitForSeconds(0.4f);
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             yield return null; 
         }
     }
