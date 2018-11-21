@@ -155,7 +155,7 @@ public class GravityGun : MonoBehaviour
                 }
                 else if (pull.gameObject.tag == "SmallObject")
                 {
-                    pull.GetComponent<JumpPad>().enabled = false;
+                    pull.GetComponent<JumpPad>().allowJump = false;
                 }
                 pull.GetComponent<BoxCollider2D>().isTrigger = true;
                 StartCoroutine(ShrinkOverTime(0.3f, pull));
@@ -206,7 +206,7 @@ public class GravityGun : MonoBehaviour
 
         if (objectShot.gameObject.tag == "SmallObject")
         {
-            objectShot.GetComponent<JumpPad>().enabled = true;
+            objectShot.GetComponent<JumpPad>().allowJump = true;
         }
         //if (objectShot.gameObject != null)
         //{
