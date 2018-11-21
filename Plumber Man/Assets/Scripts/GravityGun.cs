@@ -94,7 +94,7 @@ public class GravityGun : MonoBehaviour
         
         
         objectShot.SetActive(true);
-        Physics2D.IgnoreCollision(objectShot.GetComponent<Collider2D>(), playerCollider);
+        //Physics2D.IgnoreCollision(objectShot.GetComponent<Collider2D>(), playerCollider);
         
         items[items.Count - 1].transform.parent = null;
         //objectShot.transform.localScale = new Vector3(1, 1, 1);
@@ -199,8 +199,11 @@ public class GravityGun : MonoBehaviour
             
             yield return null;
         } while (currentTime <= time && objectShot.gameObject != null );
-
-        Physics2D.IgnoreCollision(objectShot.GetComponent<Collider2D>(), playerCollider, false);
+        //if (objectShot.gameObject != null)
+        //{
+        //    Physics2D.IgnoreCollision(objectShot.GetComponent<Collider2D>(), playerCollider, false);
+        //}
+        
     }
     IEnumerator ShrinkOverTime(float time, GameObject pull)
     {
