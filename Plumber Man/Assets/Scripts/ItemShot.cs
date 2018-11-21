@@ -20,10 +20,8 @@ public class ItemShot : MonoBehaviour
     }
     public void Shoot()
     {
-        Debug.Log("Toto");
         GetComponent<BoxCollider2D>().enabled = true;
 
-        //GetComponent<BoxCollider2D>().size = new Vector2(0.6f, 0.2f);
         if (rotateGun.facingRight)
         {
             rb.velocity = transform.right * bulletSpeed;
@@ -38,12 +36,8 @@ public class ItemShot : MonoBehaviour
 
         if (col.gameObject.tag == "Ground")
         {
-            //rb.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            //rb.velocity = Vector2.zero;
             rb.isKinematic = true;
-            Debug.Log("Heyooooo");
             rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-            //StartCoroutine(WaitKinematic());
             if (movement.sprite.flipX == true)
             {
                 rb.transform.localRotation = Quaternion.Euler(0, 0, 180);
@@ -52,18 +46,21 @@ public class ItemShot : MonoBehaviour
             {
                 rb.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
-            
-            //rb.transform.localRotation = Quaternion.identity;
+
             rb.velocity = Vector2.zero;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         if (col.gameObject.tag == "Wall")
         {
             rb.velocity = Vector2.zero;
-            Debug.Log("Kine1111");
             rb.transform.localRotation = Quaternion.identity;
             StartCoroutine(WaitKinematic());
-            //rb.isKinematic = true;
+
+        }
+
+        if(col.gameObject.tag == "LargeObject")
+        {
+            Destroy(gameObject); 
         }
     }
     IEnumerator WaitKinematic()
@@ -78,19 +75,12 @@ public class ItemShot : MonoBehaviour
         rb.isKinematic = true;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         yield return null;
-        //if (rb.gameObject.tag == "JumpPad" && gravityGun.shrinking == false)
-        //{
-        //    Debug.Log("COLLIDED");
-        //    rb.transform.GetChild(0).gameObject.SetActive(true);
-        //}
-
     }
     IEnumerator WaitKinematicWall()
     {
         rb.isKinematic = false;
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.05f);
-        //rb.isKinematic = false;
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.05f);
         rb.velocity = Vector2.zero;

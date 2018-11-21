@@ -23,27 +23,21 @@ public class EnemyCollisionManager : MonoBehaviour {
 
      void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<EnemyShot>() != null)
+        if(collision.gameObject.GetComponent<EnemyShot>() != null || (collision.gameObject.GetComponent<ItemShot>() != null))
         {
-            collision.gameObject.GetComponent<EnemyCollisionManager>().enabled = false; 
-            print("Collided,yo!"); 
+            if(collision.gameObject.GetComponent<EnemyShot>() != null)
+            {
+                collision.gameObject.GetComponent<EnemyCollisionManager>().enabled = false; 
+            }
+            
             enemyHealth -= 1;
             anim.SetBool("Hit", true); 
             EnemyHealthCheck();
-        }
-
-        if(collision.gameObject.GetComponent<JumpPad>() != null)
-        {
-            knockbackDir = new Vector2(collision.gameObject.transform.position.x - transform.position.x,
-                collision.collider.transform.position.y - transform.position.y) * enemyKnockback;
-
-            gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDir, ForceMode2D.Impulse);
         }
     }
 
     public void EnemyHealthCheck()
     {
-        Debug.Log("Hej");
         GameObject splatter = Instantiate(bloodSplatter, transform.position, Quaternion.identity);
         ParticleSystem particleSystem = splatter.GetComponent<ParticleSystem>();
         if (enemyHealth<=0)
@@ -64,7 +58,6 @@ public class EnemyCollisionManager : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("Hit", false);
         splatter.SetActive(false);
-        Debug.Log("Coroutine activated");
 
         yield return new WaitForEndOfFrame();
         if(this.dead == true)
