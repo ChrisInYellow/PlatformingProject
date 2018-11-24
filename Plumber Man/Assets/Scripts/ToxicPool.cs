@@ -18,14 +18,7 @@ public class ToxicPool : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            //playerHealth.health -= damage;
             StartCoroutine(DamageOverTime());
-            //knockbackDir = new Vector2(collision.gameObject.transform.position.x - transform.position.x,
-            //    collision.transform.position.y - transform.position.y) * recoil;
-
-            //print(knockbackDir);
-
-            //collision.gameObject.GetComponent<Rigidbody2D>().AddForce(knockbackDir, ForceMode2D.Impulse);
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EnemyStates.StateMachine; 
 
+//FSM-architecture for one type of enemy. State-implementation opens up for additional enemy-types for potential expanded product.
 public class EnemyFSM : IEnemyStates {
 
     public bool movingRight = true;
@@ -56,29 +57,7 @@ public class EnemyFSM : IEnemyStates {
             transform.position = movingRight ? transform.position + newPos : transform.position - newPos;
 
             CheckEndofPath();
-
-          /*  RaycastHit2D hit = Physics2D.Raycast(transform.position, sprite.transform.forward);
-            Debug.DrawRay(hit.transform.position,sprite.transform.forward); */
-            
-
-         /*  if(hit.collider.tag == "Player")
-            {
-                foundPlayer = true; 
-            }*/
         }
-    }
-
-    private IEnumerator Hunt_Enter()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 playerPos = player.transform.position;
-        foundPlayer = false; 
-        yield return null;
-        float huntSpeed = speed *2;
-        playerPos.x += huntSpeed * Time.deltaTime; 
-        transform.position = movingRight ? transform.position + playerPos : transform.position - playerPos;
-        yield return new WaitForSeconds(huntingDuration);
-        fsm.ChangeState(States.Patrol, StateTransition.Safe); 
     }
 
     void CheckEndofPath()

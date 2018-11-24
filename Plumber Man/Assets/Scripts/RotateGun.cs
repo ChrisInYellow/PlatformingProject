@@ -28,7 +28,6 @@ public class RotateGun : MonoBehaviour {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = rotation;
-            Debug.Log("SCREEN");
             Debug.Log(direction.x);
             
         }
@@ -44,25 +43,6 @@ public class RotateGun : MonoBehaviour {
             transform.rotation = rotation;
             
         }
-        //if (transform.eulerAngles.z >= 270 && transform.eulerAngles.z <= 360 || transform.eulerAngles.z >= 0 && transform.eulerAngles.z <= 90)
-        //{
-
-        //    //movement.sprite.flipX = false;
-        //    //movement.gunSprite.flipX = false;
-        //}
-        //else if (transform.eulerAngles.z <= 269 && transform.eulerAngles.z >= 91)
-        //{
-
-        //    //movement.sprite.flipX = true;
-        //    //movement.gunSprite.flipX = true;
-
-        //}
-
-        //Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-
-        //float angle = Mathf.Atan2(direction.y*-1, direction.x*-1) * Mathf.Rad2Deg;
-        //Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
 
     }
 
