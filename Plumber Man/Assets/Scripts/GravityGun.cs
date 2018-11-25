@@ -145,23 +145,26 @@ public class GravityGun : MonoBehaviour
             system4.Play();
             system5.Play();
             foreach (GameObject pull in PullOBJ)
+            {
+
+
+                if (pull.gameObject != null)
                 {
 
 
+                    if (pull.gameObject.tag == "Enemy")
+                    {
+                        Destroy(pull.GetComponent<Trap>());
+                    }
+                    else if (pull.gameObject.tag == "SmallObject")
+                    {
+                        pull.GetComponent<JumpPad>().allowJump = false;
+                    }
+                    pull.GetComponent<BoxCollider2D>().isTrigger = true;
+                    StartCoroutine(ShrinkOverTime(0.3f, pull));
 
-                if (pull.gameObject.tag == "Enemy")
-                {
-                    Destroy(pull.GetComponent<Trap>());
                 }
-                else if (pull.gameObject.tag == "SmallObject")
-                {
-                    pull.GetComponent<JumpPad>().allowJump = false;
-                }
-                pull.GetComponent<BoxCollider2D>().isTrigger = true;
-                StartCoroutine(ShrinkOverTime(0.3f, pull));
-
-                }
-            
+            }
             
             
         }
