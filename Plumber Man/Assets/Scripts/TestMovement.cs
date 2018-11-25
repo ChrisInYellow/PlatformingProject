@@ -17,15 +17,7 @@ public class TestMovement : MonoBehaviour
     public SpriteRenderer gunSprite;
 
     public bool knockedBack; 
-    // Use this for initialization
-    void Start()
-    {
 
-
-    }
-
-
-    // Update is called once per frame
     void Update()
     {
         if(!knockedBack)
@@ -54,22 +46,6 @@ public class TestMovement : MonoBehaviour
         {
             StartCoroutine("Knockback", knockbackTime); 
         }
-        //if (Input.GetKeyDown(KeyCode.W))
-
-        //if (Input.GetKey(KeyCode.D))
-        //{
-
-        //    //sprite.flipX = false;
-
-        //}
-
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-
-        //    //sprite.flipX = true;
-
-        //}
 
     }
 
@@ -77,7 +53,6 @@ public class TestMovement : MonoBehaviour
     {
         if (target.gameObject.tag == "Ground")
         {
-            // Debug.Log("Ground");
             grounded = true;
         }
 
